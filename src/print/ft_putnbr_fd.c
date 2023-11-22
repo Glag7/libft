@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:10:47 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/05 20:07:07 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:33:26 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_print_nbr(char *tmp, short neg, int fd)
 {
 	size_t	i;
 	char	c;
-	char	toprint[11];
+	char	toprint[21];
 
 	i = 0;
 	if (neg)
@@ -34,11 +34,11 @@ void	ft_print_nbr(char *tmp, short neg, int fd)
 	write(fd, toprint, i);
 }
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(ssize_t n, int fd)
 {
 	size_t			numlen;
 	unsigned int	num;
-	char			tmp[11];
+	char			tmp[21];
 	short			neg;
 
 	neg = 0;

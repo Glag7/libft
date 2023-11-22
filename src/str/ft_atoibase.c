@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atoibase.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 14:31:30 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/22 17:34:18 by glaguyon         ###   ########.fr       */
+/*   Created: 2023/11/22 17:17:06 by glaguyon          #+#    #+#             */
+/*   Updated: 2023/11/22 18:07:30 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static ssize_t	ft_atoi_unsigned(const char *nptr)
+static ssize_t	ft_atoibase_unsigned(const char *nptr, const char *base)
 {
-	char	c;
+	ssize_t	c;
 	size_t	num;
+	size_t	len;
 
 	num = 0;
-	c = *nptr;
-	while (c >= '0' && c <= '9')
+	c = ft_in(*nptr, base);
+	len = ft_strlen(base);
+	while (c != -1)
 	{
-		num = num * 10 + c - '0';
+		num = num * len + c;
 		nptr++;
-		c = *nptr;
+		c = ft_in(*nptr, base);
 	}
 	return (num);
 }
 
-ssize_t	ft_atoi(const char *nptr)
+ssize_t	ft_atoibase(const char *nptr, const char *base)
 {
 	size_t	num;
 	short	neg;
@@ -48,7 +50,7 @@ ssize_t	ft_atoi(const char *nptr)
 		neg = 1;
 		nptr++;
 	}
-	num = ft_atoi_unsigned(nptr);
+	num = ft_atoibase_unsigned(nptr, base);
 	if (neg)
 		return (-num);
 	return (num);

@@ -6,28 +6,11 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:32:37 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/21 19:42:31 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:57:54 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static short	ft_in(char c, const char *set)
-{
-	char	curr;
-	size_t	i;
-
-	i = 0;
-	curr = *set;
-	while (curr)
-	{
-		if (c == curr)
-			return (1);
-		i++;
-		curr = set[i];
-	}
-	return (0);
-}
 
 static char	*ft_strndup(const char *s, size_t n)
 {
@@ -67,7 +50,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	len = 0;
 	i = 0;
 	c = *s1;
-	while (ft_in(c, set) && c)
+	while (ft_in(c, set) != -1 && c)
 	{
 		s1++;
 		c = *s1;
@@ -75,7 +58,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (c)
 	{
 		i++;
-		if (!ft_in(c, set))
+		if (ft_in(c, set) != -1)
 			len = i;
 		c = s1[i];
 	}

@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 14:24:20 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/05 15:36:49 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:31:20 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ static void	ft_fill_arg(char *arg, char *tmp, short neg)
 	arg[i] = '\0';
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(ssize_t n)
 {
 	size_t			numlen;
 	unsigned int	num;
 	char			*arg;
-	char			tmp[11];
+	char			tmp[21];
 	short			neg;
 
 	neg = 0;

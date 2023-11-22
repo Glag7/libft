@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 17:06:51 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/21 18:25:28 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:20:09 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,6 @@ static size_t	ft_count_words(const char *s, char c)
 		curr = *s;
 	}
 	return (word_count);
-}
-
-static char	**ft_free_strs(char **strs)
-{
-	char	*str;
-	size_t	i;
-
-	i = 0;
-	str = *strs;
-	while (str)
-	{
-		free(str);
-		i++;
-		str = strs[i];
-	}
-	free(strs);
-	return (NULL);
 }
 
 static size_t	ft_gotonext(const char *s, char c)
@@ -100,7 +83,10 @@ char	**ft_split(char const *s, char c)
 		{
 			strs[i] = ft_worddup(s, c);
 			if (strs[i] == NULL)
-				return (ft_free_strs(strs));
+			{
+				ft_freearr((void **) strs);
+				return (NULL);
+			}
 			i++;
 		}
 		s += ft_gotonext(s, c);
