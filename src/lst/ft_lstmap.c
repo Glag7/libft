@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 00:05:06 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/21 19:33:09 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:36:49 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*newlst;
 	t_list	*tmp;
 
-	if (f == NULL)
-		return 0;//(ft_lstcpy(lst, del));
 	newlst = ft_init_map(lst, f, del);
 	if (newlst == NULL)
 		return (NULL);
