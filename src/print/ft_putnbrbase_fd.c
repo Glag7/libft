@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbrbase_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 15:10:47 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/23 17:17:00 by glaguyon         ###   ########.fr       */
+/*   Created: 2023/11/23 17:10:45 by glaguyon          #+#    #+#             */
+/*   Updated: 2023/11/23 17:21:06 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	ft_print_nbr(char *tmp, short neg, int fd)
 {
 	size_t	i;
 	char	c;
-	char	toprint[21];
+	char	toprint[66];
 
 	i = 0;
 	if (neg)
@@ -34,26 +34,29 @@ static void	ft_print_nbr(char *tmp, short neg, int fd)
 	write(fd, toprint, i);
 }
 
-void	ft_putnbr_fd(ssize_t n, int fd)
+void	ft_putnbrbase_fd(ssize_t n, int fd, char *base)
 {
 	size_t	numlen;
+	size_t	len;
 	size_t	num;
-	char	tmp[21];
+	char	tmp[66];
 	short	neg;
 
-	neg = 0;
 	num = n;
+	len = ft_strlen(base);
 	if (n < 0)
 	{
 		neg = 1;
 		num = -n;
 	}
+	else
+		neg = 0;
 	*tmp = '\0';
 	numlen = 1;
 	while (num || numlen == 1)
 	{
-		tmp[numlen] = num % 10 + '0';
-		num /= 10;
+		tmp[numlen] = base[num % len];
+		num /= len;
 		numlen++;
 	}
 	ft_print_nbr(tmp + numlen + neg - 1, neg, fd);

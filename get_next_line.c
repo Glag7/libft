@@ -6,38 +6,11 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:34:26 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/18 21:30:16 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:53:53 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-
-void	*ft_memcpy(void *dest, const void *src, size_t n)
-{
-	char	*src_c;
-	char	*dest_c;
-	size_t	*src_long;
-	size_t	*dest_long;
-	size_t	i;
-
-	i = 0;
-	src_c = (char *) src;
-	dest_c = (char *) dest;
-	src_long = (size_t *) src;
-	dest_long = (size_t *) dest;
-	while (i < n / sizeof(size_t))
-	{
-		dest_long[i] = src_long[i];
-		i++;
-	}
-	i *= sizeof(size_t);
-	while (i < n)
-	{
-		dest_c[i] = src_c[i];
-		i++;
-	}
-	return (dest);
-}
+#include "libft.h"
 
 void	ft_freeline(t_list **lst)
 {

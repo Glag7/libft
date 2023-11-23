@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/22 18:06:11 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:46:46 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,11 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 
+//math
+ssize_t	ft_max(ssize_t a, ssize_t b);
+ssize_t	ft_min(ssize_t a, ssize_t b);
+ssize_t	ft_powi(ssize_t x, size_t n);
+
 //mem
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
@@ -72,6 +77,7 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(ssize_t n, int fd);
+void	ft_putnbrbase_fd(ssize_t n, int fd, char *base);
 void	ft_putstr_fd(char *s, int fd);
 
 //str
@@ -84,6 +90,7 @@ size_t	ft_strlen(const char *s);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(ssize_t n);
+char	*ft_itoabase(ssize_t n, const char *base);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);

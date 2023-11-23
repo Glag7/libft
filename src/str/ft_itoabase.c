@@ -1,60 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_itoabase.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 15:10:47 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/23 17:17:00 by glaguyon         ###   ########.fr       */
+/*   Created: 2023/11/23 16:54:43 by glaguyon          #+#    #+#             */
+/*   Updated: 2023/11/23 17:23:31 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_print_nbr(char *tmp, short neg, int fd)
+static void	ft_fill_arg(char *arg, char *tmp, short neg)
 {
 	size_t	i;
 	char	c;
-	char	toprint[21];
 
+	if (arg == NULL)
+		return ;
 	i = 0;
 	if (neg)
 	{
 		i++;
-		toprint[0] = '-';
+		arg[0] = '-';
 	}
 	c = *(tmp - i);
 	while (c)
 	{
-		toprint[i] = c;
+		arg[i] = c;
 		i++;
 		c = *(tmp - i);
 	}
-	write(fd, toprint, i);
+	arg[i] = '\0';
 }
 
-void	ft_putnbr_fd(ssize_t n, int fd)
+char	*ft_itoabase(ssize_t n, const char *base)
 {
 	size_t	numlen;
+	size_t	len;
 	size_t	num;
-	char	tmp[21];
-	short	neg;
+	char	*arg;
+	char	tmp[66];
 
-	neg = 0;
-	num = n;
+	len = ft_strlen(base);
 	if (n < 0)
-	{
-		neg = 1;
 		num = -n;
-	}
+	else
+		num = n;
 	*tmp = '\0';
 	numlen = 1;
 	while (num || numlen == 1)
 	{
-		tmp[numlen] = num % 10 + '0';
-		num /= 10;
+		tmp[numlen] = base[num % len];
+		num /= len;
 		numlen++;
 	}
-	ft_print_nbr(tmp + numlen + neg - 1, neg, fd);
+	arg = malloc((numlen + (n < 0)) * sizeof(char));
+	ft_fill_arg(arg, tmp + numlen + (n < 0) - 1, n < 0);
+	return (arg);
 }

@@ -30,6 +30,10 @@ SRC_LST = ft_lstlast.c \
 	  ft_lstdelone.c \
 	  ft_lstiter.c
 
+SRC_MATH = ft_max.c \
+	   ft_min.c \
+	   ft_pow.c
+
 SRC_MEM = ft_bzero.c \
 	  ft_calloc.c \
 	  ft_memchr.c \
@@ -41,6 +45,7 @@ SRC_MEM = ft_bzero.c \
 SRC_PRINT = ft_putchar_fd.c \
 	    ft_putendl_fd.c \
 	    ft_putnbr_fd.c \
+	    ft_putnbrbase_fd.c \
 	    ft_putstr_fd.c
 
 SRC_STR = ft_atoi.c \
@@ -52,6 +57,7 @@ SRC_STR = ft_atoi.c \
 	  ft_striteri.c \
 	  ft_split.c \
 	  ft_itoa.c \
+	  ft_itoabase.c \
 	  ft_strchr.c \
 	  ft_strdup.c \
 	  ft_strjoin.c \
@@ -66,6 +72,7 @@ SRC_STR = ft_atoi.c \
 SRC = $(addprefix src/arr/, $(SRC_ARR)) \
       $(addprefix src/char/, $(SRC_CHAR)) \
       $(addprefix src/lst/, $(SRC_LST)) \
+      $(addprefix src/math/, $(SRC_MATH)) \
       $(addprefix src/mem/, $(SRC_MEM)) \
       $(addprefix src/print/, $(SRC_PRINT)) \
       $(addprefix src/str/, $(SRC_STR))

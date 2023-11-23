@@ -1,11 +1,9 @@
 sort tab
 max min sum truth tab 
-indice lst avec indice negatif pour la doublement chainee
-pop
 srch
 max
 min
-pow
+maths float
 lst add lst
 lst sort
 lst remove if
@@ -21,13 +19,19 @@ strs t olst
 foreach if
 insert avec indice
 sorted merge
-putnbr base
-itoa base
-TODO LST
+TODO LST et DLST
 -swap
 -srch 
+-pop
+-indice (negatif DLST)
+prime
 bigint
 bigfloat ?
 tester
 tab to lst
 matrice ?
+dict
+gnl
+random
+imaginaires
+quaternions
