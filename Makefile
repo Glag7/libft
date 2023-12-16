@@ -28,13 +28,17 @@ SRC_LST = ft_lstlast.c \
 	  ft_lstadd_front.c \
 	  ft_lstclear.c \
 	  ft_lstdelone.c \
-	  ft_lstiter.c
+	  ft_lstiter.c \
+	  ft_lstpop.c \
+	  ft_lsttstr_to_str.c
 
 SRC_MATH = ft_max.c \
 	   ft_min.c \
-	   ft_pow.c
+	   ft_powi.c
 
-SRC_MEM = ft_bzero.c \
+SRC_MEM = ft_bspace.c \
+	  ft_bzchar.c \
+	  ft_bzero.c \
 	  ft_calloc.c \
 	  ft_memchr.c \
 	  ft_memcpy.c \
@@ -68,6 +72,8 @@ SRC_STR = ft_atoi.c \
 	  ft_substr.c \
 	  ft_strncmp.c
 
+SRC_TSTR = ft_tstrnew.c \
+	   ft_tstrfree.c
 
 SRC = $(addprefix src/arr/, $(SRC_ARR)) \
       $(addprefix src/char/, $(SRC_CHAR)) \
@@ -75,7 +81,9 @@ SRC = $(addprefix src/arr/, $(SRC_ARR)) \
       $(addprefix src/math/, $(SRC_MATH)) \
       $(addprefix src/mem/, $(SRC_MEM)) \
       $(addprefix src/print/, $(SRC_PRINT)) \
-      $(addprefix src/str/, $(SRC_STR))
+      $(addprefix src/str/, $(SRC_STR)) \
+      $(addprefix src/tstr/, $(SRC_TSTR))
+
 
 OBJ = $(SRC:.c=.o)
 
@@ -90,7 +98,7 @@ $(NAME) : $(OBJ)
 	$(COMP) $(CFLAGS) -c $^ -o $@ -I hdr/
 
 clean : 
-	rm -f $(OBJ) $(OBJ_BONUS)
+	rm -f $(OBJ)
 
 fclean : clean
 	rm -f $(NAME)

@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/23 17:46:46 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:20:50 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -58,6 +59,9 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
+void	ft_lstpop(t_list **lst, void (del)(void *), int n);
+char	*ft_lsttstr_to_str(t_list **lst, size_t len, void (del)(void *),
+			short (end)(void *));
 
 //math
 ssize_t	ft_max(ssize_t a, ssize_t b);
@@ -65,6 +69,8 @@ ssize_t	ft_min(ssize_t a, ssize_t b);
 ssize_t	ft_powi(ssize_t x, size_t n);
 
 //mem
+void	ft_bspace(void *s, size_t n);
+void	ft_bzchar(void *s, size_t n);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	*ft_memchr(const void *s, int c, size_t n);
@@ -100,5 +106,9 @@ char	*ft_strrchr(const char *s, int c);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+
+//tstr
+t_str	ft_tstrnew(char *str, size_t len);
+void	ft_tstrfree(t_str *tstr);
 
 #endif
