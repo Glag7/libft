@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/16 19:11:11 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/16 20:37:19 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 //tstr
-t_list	*ft_tstr_to_lst(t_str tstr, short (*sep)(char), void (*del)(void *));
+t_list	*ft_tstr_to_lst(t_str tstr, char *charset, void (*del)(void *));
 t_str	ft_tstr_dupstr(char *s, size_t len);
 t_str	ft_tstrnew(char *str, size_t len);
 void	ft_tstrfree(t_str *tstr);

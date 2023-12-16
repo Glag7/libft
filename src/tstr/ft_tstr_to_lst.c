@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 18:19:38 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/16 20:06:56 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/16 20:38:18 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static t_list	*ft_addtstr(t_list **lst, t_list *tmp, t_str *tstr)
 	return (node);
 }
 
-t_list	*ft_tstr_to_lst(t_str tstr, short (*sep)(char), void (*del)(void *))
+t_list	*ft_tstr_to_lst(t_str tstr, char *charset, void (*del)(void *))
 {
 	size_t	i;
 	size_t	offset;
@@ -45,19 +45,18 @@ t_list	*ft_tstr_to_lst(t_str tstr, short (*sep)(char), void (*del)(void *))
 	offset = 0;
 	while (i < tstr.len)
 	{
-		while (i < tstr.len && !sep(tstr.s[i]))
+		while (i < tstr.len && ft_in(tstr[i], charset) == -1)
 			i++;
 		tmptstr = malloc(sizeof(t_str));
 		if (tmptstr)
-			*tmptstr = ft_tstr_dupstr(tstr.s + offset, i - offset + 1);
+			*tmptstr = ft_tstr_dupstr(tstr.s + offset, i - offset);
 		tmp = ft_addtstr(&lst, tmp, tmptstr);
 		if (tmp == NULL)
 		{
 			ft_lstclear(&lst, del);
 			return (NULL);
 		}
-		i++;
-		offset = i;
+		offset = i++;
 	}
 	return (lst);
 }
