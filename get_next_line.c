@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:34:26 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/16 21:10:34 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/17 13:32:28 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,29 @@ char	*ft_gnl(int fd, size_t bsize)
 	char			*line;
 	size_t			len;
 
+	if (fd < 0)
+		return (ft_freegnl(readed, fd));
 	len = 0;
 	tmp = readed[fd];
-	while (tmp && ((t_str *)tmp->content)->s[((t_str *)tmp->content)->len - 1]
-		!= '\n')
+	while (tmp)
 	{
 		len += ((t_str *)tmp->content)->len;
+		if (tmp->next == NULL || ft_iseol((t_str *)(tmp->content)))
+			break ;
 		tmp = tmp->next;
 	}
-	if (tmp != NULL)
+	if (tmp && ft_iseol((t_str *)(tmp->content)))
 	{
-		len += ((t_str *)tmp->content)->len;
-		line = ft_lsttstr_to_str(readed[fd], len, &ft_tstrfree, &ft_isend);
+		line = ft_lsttstr_to_str(readed[fd], len, &ft_tstrfree, &ft_iseol);
 		if (line == NULL)
 			ft_free1024(readed);
-		return (line);
 	}
-	line = get_next_line_file(readed[fd], len);
-	if (line == NULL)
-		ft_free1024(readed);
+	else
+		line = get_next_line_file(readed, &tmp, len, bsize);
 	return (line);
 }
 
-//etat : on arrive avec la fin de liste (e theorie)
-char	*get_next_line_file(t_list **lst, size_t len, size_t bsize)
+static char	*get_next_line_file(t_list **readed, t_list **lst, size_t len, size_t bsize)
 {
 	size_t	len;
 	ssize_t	read_size;
@@ -64,11 +63,12 @@ char	*get_next_line_file(t_list **lst, size_t len, size_t bsize)
 		line_len = ft_str_to_lst(readed, &tmp, line, read_size);
 		if (tmp == NULL || ((t_str *)tmp->content)->s[((t_str *)tmp->content)->len - 1]
 		!= '\n')
-			break ;
+			break ;//sus
 	}
 	if (read_size < 0)
 		ft_lstclear(readed + fd, &ft_tstrfree);
 	readed[fd] = tmp;//blunder
+			 //where protection malloc 
 	return (ft_lst_to_str(readed, len, fd));
 }
 
@@ -83,5 +83,14 @@ static void	*ft_free1024(t_list **readed)
 		readed[i] = 0;
 		i++;
 	}
+	return (NULL);
+}
+
+static char	*ft_freegnl(t_list **readed, int fd)
+{
+	if (fd < -1024)
+		ft_free1024(readed);
+	else
+		ft_lstclear(readed - fd - 1, &ft_tstrfree);
 	return (NULL);
 }

@@ -73,6 +73,7 @@ SRC_STR = ft_atoi.c \
 	  ft_strncmp.c
 
 SRC_TSTR = ft_tstr_to_lst.c \
+	   ft_iseol.c \
 	   ft_tstr_dupstr.c \
 	   ft_tstrnew.c \
 	   ft_tstrfree.c
