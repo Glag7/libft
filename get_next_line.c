@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:34:26 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/17 13:32:28 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/17 14:20:30 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ char	*ft_gnl(int fd, size_t bsize)
 	size_t			len;
 
 	if (fd < 0)
-		return (ft_freegnl(readed, fd));
+	{
+		ft_freegnl(readed, fd);
+		return (NULL);
+	}
 	len = 0;
 	tmp = readed[fd];
 	while (tmp)
@@ -30,18 +33,16 @@ char	*ft_gnl(int fd, size_t bsize)
 			break ;
 		tmp = tmp->next;
 	}
-	if (tmp && ft_iseol((t_str *)(tmp->content)))
-	{
-		line = ft_lsttstr_to_str(readed[fd], len, &ft_tstrfree, &ft_iseol);
-		if (line == NULL)
-			ft_free1024(readed);
-	}
-	else
-		line = get_next_line_file(readed, &tmp, len, bsize);
+	if (!tmp || !ft_iseol((t_str *)(tmp->content)))
+		get_next_line_file(readed, &tmp, &len, bsize);
+	line = ft_lsttstr_to_str(readed[fd], len, &ft_tstrfree, &ft_iseol);
+	if (line == NULL)
+		ft_free1024(readed);
 	return (line);
 }
 
-static char	*get_next_line_file(t_list **readed, t_list **lst, size_t len, size_t bsize)
+static char	*get_next_line_file(t_list **readed, t_list **lst, size_t len,
+	size_t bsize)
 {
 	size_t	len;
 	ssize_t	read_size;
@@ -52,6 +53,32 @@ static char	*get_next_line_file(t_list **readed, t_list **lst, size_t len, size_
 	if (line.s == NULL)
 		return (line);
 	read_size = read(fd, line.s, bsize);
+	if (read_size > 0)
+	{
+		//incrementer len
+		tmp = ft_tstr_to_lst(line, "\n", &ft_tstrfree);
+		if (tmp == NULL)
+		{
+			ft_free1024(readed);
+			free(line.s);
+			return (NULL);
+		}
+		ft_lstadd_back(lst, tmp);
+		*lst = tmp;//blunder puissance max int
+		if (ft_iseol(tmp->content))
+		{
+			line = ft_lsttstr_to_str(readed[fd], len, &ft_tstrfree, &ft_iseol);//problemo
+			if (line == NULL)
+			{
+				ft_free1024(readed);
+				return (NULL);
+			}
+		}
+	}
+
+
+//break si eol
+
 	while (read_size > 0)
 	{
 		len += BUFFER_SIZE;
