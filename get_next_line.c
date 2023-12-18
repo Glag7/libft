@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:34:26 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/17 14:20:30 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/18 22:21:59 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,69 +34,59 @@ char	*ft_gnl(int fd, size_t bsize)
 		tmp = tmp->next;
 	}
 	if (!tmp || !ft_iseol((t_str *)(tmp->content)))
-		get_next_line_file(readed, &tmp, &len, bsize);
+		ft_gnl_file(readed, &tmp, &len, bsize);
 	line = ft_lsttstr_to_str(readed[fd], len, &ft_tstrfree, &ft_iseol);
 	if (line == NULL)
 		ft_free1024(readed);
+	if (!*line)		//pour testeur
+	{			//pour testeur
+		free(line);	//pour testeur
+		return (NULL);	//pour testeur
+	}			//pour testeur
 	return (line);
 }
 
-static char	*get_next_line_file(t_list **readed, t_list **lst, size_t len,
+static void	ft_gnl_file(t_list **readed, t_list **lst, size_t *len,
 	size_t bsize)
 {
-	size_t	len;
 	ssize_t	read_size;
 	t_str	line;
 	t_list	*tmp;
+	t_list	*end;
 
+	end = *lst;
 	line.s = malloc(bsize * sizeof(char));
-	if (line.s == NULL)
-		return (line);
-	read_size = read(fd, line.s, bsize);
-	if (read_size > 0)
+	if (line == NULL)
+		ft_free1024(readed);
+	else
+		read_size = read(fd, line, bsize);
+	while (read_size > 0 && line)
 	{
-		//incrementer len
+		line.len = read_size;
+		*len += read_size;
 		tmp = ft_tstr_to_lst(line, "\n", &ft_tstrfree);
 		if (tmp == NULL)
 		{
 			ft_free1024(readed);
-			free(line.s);
-			return (NULL);
+			break ;
 		}
-		ft_lstadd_back(lst, tmp);
-		*lst = tmp;//blunder puissance max int
+		ft_lstaddback(&end, tmp);
+		if (*lst == NULL)
+			*lst = tmp;
+		end = tmp;
 		if (ft_iseol(tmp->content))
 		{
-			line = ft_lsttstr_to_str(readed[fd], len, &ft_tstrfree, &ft_iseol);//problemo
-			if (line == NULL)
-			{
-				ft_free1024(readed);
-				return (NULL);
-			}
+			*len = *len - read_size + ((t_str *)tmp->content)->len;
+			break ;
 		}
+		free(line.s);
+		line.s = malloc(bsize * sizeof(char));
+		if (line.s == NULL)
+			break ;
+		read_size = read(fd, line, bsize);
+
 	}
-
-
-//break si eol
-
-	while (read_size > 0)
-	{
-		len += BUFFER_SIZE;
-		free(line);
-		line = malloc(BUFFER_SIZE * sizeof(char));
-		if (line == NULL)
-			return (ft_free1024(readed));
-		read_size = read(fd, line, BUFFER_SIZE);
-		line_len = ft_str_to_lst(readed, &tmp, line, read_size);
-		if (tmp == NULL || ((t_str *)tmp->content)->s[((t_str *)tmp->content)->len - 1]
-		!= '\n')
-			break ;//sus
-	}
-	if (read_size < 0)
-		ft_lstclear(readed + fd, &ft_tstrfree);
-	readed[fd] = tmp;//blunder
-			 //where protection malloc 
-	return (ft_lst_to_str(readed, len, fd));
+	free(line.s);
 }
 
 static void	*ft_free1024(t_list **readed)
