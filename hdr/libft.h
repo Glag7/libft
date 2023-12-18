@@ -49,6 +49,9 @@ short	ft_isprint(int c);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 
+//file
+char	*get_next_line(int fd);
+
 //lst
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));

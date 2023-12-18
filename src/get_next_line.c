@@ -6,11 +6,17 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:34:26 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/18 22:21:59 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/18 22:27:27 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+char	*get_next_line(int fd)
+{
+	if (fd >= 0 && fd < 1024i && BUFFER_SIZE >= 0)
+		return (ft_gnl(fd, BUFFER_SIZE));
+}
 
 char	*ft_gnl(int fd, size_t bsize)
 {
@@ -84,7 +90,6 @@ static void	ft_gnl_file(t_list **readed, t_list **lst, size_t *len,
 		if (line.s == NULL)
 			break ;
 		read_size = read(fd, line, bsize);
-
 	}
 	free(line.s);
 }

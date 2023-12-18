@@ -20,6 +20,8 @@ SRC_CHAR = ft_isalnum.c \
 	   ft_tolower.c \
 	   ft_toupper.c
 
+SRC_FILE = ft_gnl.c
+
 SRC_LST = ft_lstlast.c \
 	  ft_lstmap.c \
 	  ft_lstnew.c \
@@ -80,6 +82,7 @@ SRC_TSTR = ft_tstr_to_lst.c \
 
 SRC = $(addprefix src/arr/, $(SRC_ARR)) \
       $(addprefix src/char/, $(SRC_CHAR)) \
+      $(addprefix src/gnl/, $(SRC_GNL)) \
       $(addprefix src/lst/, $(SRC_LST)) \
       $(addprefix src/math/, $(SRC_MATH)) \
       $(addprefix src/mem/, $(SRC_MEM)) \
