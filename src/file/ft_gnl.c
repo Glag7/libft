@@ -6,17 +6,15 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:34:26 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/19 22:27:43 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/20 00:24:53 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 1 	
-#endif//non
-char	*ft_gnl(int fd, size_t bsize);	//non
-
-//non
+#endif
+char	*ft_gnl(int fd, size_t bsize);
 char	*get_next_line(int fd)
 {
 	if (fd >= 0 && fd < 1024 && BUFFER_SIZE >= 0)
@@ -48,6 +46,13 @@ static char	*ft_freegnl(t_list **readed, int fd)
 	return (NULL);
 }
 
+static t_str	ft_gnl_loop(size_t *len)
+{
+	t_str	line;
+	ssize_t	read_size;
+
+}
+
 static size_t	ft_gnl_file(t_list **readed, t_list **lst, int fd,
 	size_t bsize)
 {
@@ -57,38 +62,35 @@ static size_t	ft_gnl_file(t_list **readed, t_list **lst, int fd,
 	t_list	*tmp;
 	t_list	*end;
 
-	if (*lst == NULL)
-		lst = readed + fd;
 	len = 0;
 	end = *lst;
-	line.s = malloc(bsize * sizeof(char));
-	if (line.s)
-		read_size = read(fd, line.s, bsize);
-	while (line.s && read_size > 0)
+	if (end == NULL)
+		lst = readed + fd;
+	while (len == 0 || line.len != 0)
 	{
+		line.s = malloc(bsize * sizeof(char));
+		read_size = read(fd, line.s, bsize * !!line.s);
+		if (line.s == NULL || read_size <= 0)
+		{
+			free(line.s);
+			break ;
+		}
 		line.len = read_size;
 		len += read_size;
 		tmp = ft_tstr_to_lst(line, "\n");
+		free(line.s);
 		if (tmp == NULL)
-		{
-			free(line.s);
 			line.s = 0;
-			break ;
-		}
 		if (*lst == NULL)
 			*lst = tmp;
 		else
 			ft_lstadd_back(&end, tmp);
 		end = tmp;
-		if (ft_iseol(tmp->content))
+		if (tmp && ft_iseol(tmp->content))
 		{
 			len = len - read_size + ((t_str *)tmp->content)->len;
 			break ;
 		}
-		free(line.s);
-		line.s = malloc(bsize * sizeof(char));
-		if (line.s)
-			read_size = read(fd, line.s, bsize);
 	}
 	if (line.s == NULL)
 	{
@@ -97,10 +99,10 @@ static size_t	ft_gnl_file(t_list **readed, t_list **lst, int fd,
 	}
 	else if (read_size == 0 && readed[fd] == NULL)
 		readed[fd] = ft_tstr_to_lst((t_str){0, 0}, "saucisse");
-	free(line.s);
 	return (len);
 }
 
+//enlever else if
 char	*ft_gnl(int fd, size_t bsize)
 {
 	static t_list	*readed[1024] = {NULL};
@@ -127,10 +129,10 @@ char	*ft_gnl(int fd, size_t bsize)
 	line = ft_lsttstr_to_str(readed + fd, len, &ft_tstrfree, &ft_iseol);
 	if (line == NULL)
 		ft_free1024(readed);
-	else if (!*line)		//pour testeur
-	{			//pour testeur
-		free(line);	//pour testeur
-		return (NULL);	//pour testeur
-	}			//pour testeur
+	else if (!*line)
+	{
+		free(line);
+		return (NULL);
+	}
 	return (line);
 }
