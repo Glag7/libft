@@ -1,6 +1,6 @@
 NAME = libft.a
 COMP = cc 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra #-Werror
 
 SRC_ARR = ft_freearr.c \
 	  ft_freenarr.c \

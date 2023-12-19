@@ -6,12 +6,14 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:34:26 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/19 17:59:49 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/19 21:17:45 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-# define BUFFER_SIZE 1024 		//non
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 42 	
+#endif//non
 char	*ft_gnl(int fd, size_t bsize);	//non
 
 //non
@@ -21,6 +23,7 @@ char	*get_next_line(int fd)
 		return (ft_gnl(fd, BUFFER_SIZE));
 	return (0);
 }
+//non
 
 static void	*ft_free1024(t_list **readed)
 {
@@ -45,6 +48,7 @@ static char	*ft_freegnl(t_list **readed, int fd)
 	return (NULL);
 }
 
+//norme
 static size_t	ft_gnl_file(t_list **readed, t_list **lst, int fd,
 	size_t bsize)
 {
@@ -63,7 +67,7 @@ static size_t	ft_gnl_file(t_list **readed, t_list **lst, int fd,
 	{
 		line.len = read_size;
 		len += read_size;
-		tmp = ft_tstr_to_lst(line, "\n", &ft_tstrfree);
+		tmp = ft_tstr_to_lst(line, "\n");
 		if (tmp == NULL)
 		{
 			free(line.s);
@@ -72,7 +76,7 @@ static size_t	ft_gnl_file(t_list **readed, t_list **lst, int fd,
 		}
 		ft_lstadd_back(&end, tmp);
 		if (*lst == NULL)
-			*lst = tmp;
+			readed[fd] = tmp;
 		end = tmp;
 		if (ft_iseol(tmp->content))
 		{
@@ -87,12 +91,18 @@ static size_t	ft_gnl_file(t_list **readed, t_list **lst, int fd,
 	if (line.s == NULL)
 	{
 		ft_free1024(readed);
-		return ((size_t)1 << 63);
+		return ((size_t)1 << 62);
 	}
+	else if (read_size == 0 && readed[fd] == NULL)
+	{
+		readed[fd] = ft_tstr_to_lst((t_str){0, 0}, "\n");
+	}
+	printf("..not null :)..\n");
 	free(line.s);
 	return (len);
 }
 
+//todo tester fail malloc en haut la 
 char	*ft_gnl(int fd, size_t bsize)
 {
 	static t_list	*readed[1024] = {NULL};
@@ -116,11 +126,16 @@ char	*ft_gnl(int fd, size_t bsize)
 	}
 	if (!tmp || !ft_iseol((t_str *)(tmp->content)))
 		len += ft_gnl_file(readed, &tmp, fd, bsize);
+	printf("len = %zu\n", len);
 	line = ft_lsttstr_to_str(readed + fd, len, &ft_tstrfree, &ft_iseol);
 	if (line == NULL)
+	{
+		printf("..null ??..\n");
 		ft_free1024(readed);
-	if (!*line)		//pour testeur
+	}
+	else if (!*line)		//pour testeur
 	{			//pour testeur
+		printf("..empty..\n");
 		free(line);	//pour testeur
 		return (NULL);	//pour testeur
 	}			//pour testeur
