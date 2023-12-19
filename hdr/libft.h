@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/17 13:08:51 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/19 18:11:02 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 void	ft_lstpop(t_list **lst, void (del)(void *), int n);
 char	*ft_lsttstr_to_str(t_list **lst, size_t len, void (del)(void *),
-			short (end)(void *));
+			short (end)(t_str *));
 
 //math
 ssize_t	ft_max(ssize_t a, ssize_t b);
@@ -115,6 +115,6 @@ t_list	*ft_tstr_to_lst(t_str tstr, char *charset, void (*del)(void *));
 short	ft_iseol(t_str *tstr);
 t_str	ft_tstr_dupstr(char *s, size_t len);
 t_str	ft_tstrnew(char *str, size_t len);
-void	ft_tstrfree(t_str *tstr);
+void	ft_tstrfree(void *tstr);
 
 #endif

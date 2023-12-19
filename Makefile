@@ -82,7 +82,7 @@ SRC_TSTR = ft_tstr_to_lst.c \
 
 SRC = $(addprefix src/arr/, $(SRC_ARR)) \
       $(addprefix src/char/, $(SRC_CHAR)) \
-      $(addprefix src/gnl/, $(SRC_GNL)) \
+      $(addprefix src/file/, $(SRC_FILE)) \
       $(addprefix src/lst/, $(SRC_LST)) \
       $(addprefix src/math/, $(SRC_MATH)) \
       $(addprefix src/mem/, $(SRC_MEM)) \

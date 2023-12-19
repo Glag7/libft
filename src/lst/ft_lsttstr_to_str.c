@@ -6,14 +6,14 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:46 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/15 18:20:24 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/19 18:12:56 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 char	*ft_lsttstr_to_str(t_list **lst, size_t len, void (del)(void *),
-	short (end)(void *))
+	short (end)(t_str *))
 {
 	t_list	*obj;
 	char	*s;

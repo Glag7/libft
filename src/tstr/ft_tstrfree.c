@@ -6,14 +6,14 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 18:45:07 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/29 18:48:42 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/19 18:13:18 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_tstrfree(t_str *tstr)
+void	ft_tstrfree(void *tstr)
 {
-	free(tstr->s);
+	free(((t_str *)tstr)->s);
 	free(tstr);
 }

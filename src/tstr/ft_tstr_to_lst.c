@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 18:19:38 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/18 22:18:38 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/18 22:40:01 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_list	*ft_tstr_to_lst(t_str tstr, char *charset, void (*del)(void *))
 	offset = 0;
 	while (i < tstr.len && i != 0)
 	{
-		while (i < tstr.len && ft_in(tstr[i], charset) == -1)
+		while (i < tstr.len && ft_in(tstr.s[i], charset) == -1)
 			i++;
 		tmptstr = malloc(sizeof(t_str));
 		if (tmptstr)
