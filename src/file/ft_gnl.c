@@ -6,13 +6,13 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:34:26 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/19 21:17:45 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/19 22:27:43 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42 	
+# define BUFFER_SIZE 1 	
 #endif//non
 char	*ft_gnl(int fd, size_t bsize);	//non
 
@@ -48,7 +48,6 @@ static char	*ft_freegnl(t_list **readed, int fd)
 	return (NULL);
 }
 
-//norme
 static size_t	ft_gnl_file(t_list **readed, t_list **lst, int fd,
 	size_t bsize)
 {
@@ -58,6 +57,8 @@ static size_t	ft_gnl_file(t_list **readed, t_list **lst, int fd,
 	t_list	*tmp;
 	t_list	*end;
 
+	if (*lst == NULL)
+		lst = readed + fd;
 	len = 0;
 	end = *lst;
 	line.s = malloc(bsize * sizeof(char));
@@ -74,9 +75,10 @@ static size_t	ft_gnl_file(t_list **readed, t_list **lst, int fd,
 			line.s = 0;
 			break ;
 		}
-		ft_lstadd_back(&end, tmp);
 		if (*lst == NULL)
-			readed[fd] = tmp;
+			*lst = tmp;
+		else
+			ft_lstadd_back(&end, tmp);
 		end = tmp;
 		if (ft_iseol(tmp->content))
 		{
@@ -94,15 +96,11 @@ static size_t	ft_gnl_file(t_list **readed, t_list **lst, int fd,
 		return ((size_t)1 << 62);
 	}
 	else if (read_size == 0 && readed[fd] == NULL)
-	{
-		readed[fd] = ft_tstr_to_lst((t_str){0, 0}, "\n");
-	}
-	printf("..not null :)..\n");
+		readed[fd] = ft_tstr_to_lst((t_str){0, 0}, "saucisse");
 	free(line.s);
 	return (len);
 }
 
-//todo tester fail malloc en haut la 
 char	*ft_gnl(int fd, size_t bsize)
 {
 	static t_list	*readed[1024] = {NULL};
@@ -126,16 +124,11 @@ char	*ft_gnl(int fd, size_t bsize)
 	}
 	if (!tmp || !ft_iseol((t_str *)(tmp->content)))
 		len += ft_gnl_file(readed, &tmp, fd, bsize);
-	printf("len = %zu\n", len);
 	line = ft_lsttstr_to_str(readed + fd, len, &ft_tstrfree, &ft_iseol);
 	if (line == NULL)
-	{
-		printf("..null ??..\n");
 		ft_free1024(readed);
-	}
 	else if (!*line)		//pour testeur
 	{			//pour testeur
-		printf("..empty..\n");
 		free(line);	//pour testeur
 		return (NULL);	//pour testeur
 	}			//pour testeur
