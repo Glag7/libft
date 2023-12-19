@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:34:26 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/20 00:24:53 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/20 00:59:28 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,41 @@ static char	*ft_freegnl(t_list **readed, int fd)
 	return (NULL);
 }
 
-static t_str	ft_gnl_loop(size_t *len)
+//mettre len a -1 si erreur ??
+static t_list	*ft_gnl_loop(ssize_t *len, ssize_t bsize, int fd)
 {
 	t_str	line;
 	ssize_t	read_size;
+	t_list	*tmp;
 
+	line = (t_str){malloc(bsize * sizeof(char)), 0};
+	if (line.s == NULL)
+	{
+		*len = (size_t)1 << 62;
+		return (NULL);
+	}
+	read_size = read(fd, line.s, bsize);
+	if (read_size <= 0)
+	{
+		free(line.s);
+		return (NULL);
+	}
+	line.len = read_size;
+	tmp = ft_tstr_to_lst(line, "\n");
+	if (tmp == NULL)
+		*len = -1;
+	else if (ft_iseol(tmp->content))
+		*len += ((t_str *)tmp->content)->len;
+	else
+		*len += read_size;
+	free(line.s);
+	return (tmp);
 }
 
 static size_t	ft_gnl_file(t_list **readed, t_list **lst, int fd,
 	size_t bsize)
 {
 	size_t	len;
-	ssize_t	read_size;
-	t_str	line;
 	t_list	*tmp;
 	t_list	*end;
 
@@ -66,38 +88,22 @@ static size_t	ft_gnl_file(t_list **readed, t_list **lst, int fd,
 	end = *lst;
 	if (end == NULL)
 		lst = readed + fd;
-	while (len == 0 || line.len != 0)
+	while (1)
 	{
-		line.s = malloc(bsize * sizeof(char));
-		read_size = read(fd, line.s, bsize * !!line.s);
-		if (line.s == NULL || read_size <= 0)
-		{
-			free(line.s);
-			break ;
-		}
-		line.len = read_size;
-		len += read_size;
-		tmp = ft_tstr_to_lst(line, "\n");
-		free(line.s);
+		tmp = ft_gnl_loop(&len, bsize, fd);
 		if (tmp == NULL)
-			line.s = 0;
+			break ;
 		if (*lst == NULL)
 			*lst = tmp;
 		else
 			ft_lstadd_back(&end, tmp);
 		end = tmp;
-		if (tmp && ft_iseol(tmp->content))
-		{
-			len = len - read_size + ((t_str *)tmp->content)->len;
+		if (ft_iseol(tmp->content))
 			break ;
-		}
 	}
-	if (line.s == NULL)
-	{
+	if (len == (size_t)1 << 62)
 		ft_free1024(readed);
-		return ((size_t)1 << 62);
-	}
-	else if (read_size == 0 && readed[fd] == NULL)
+	else if (readed[fd] == NULL)
 		readed[fd] = ft_tstr_to_lst((t_str){0, 0}, "saucisse");
 	return (len);
 }
