@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:34:26 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/20 00:59:28 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/20 01:03:10 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static char	*ft_freegnl(t_list **readed, int fd)
 }
 
 //mettre len a -1 si erreur ??
-static t_list	*ft_gnl_loop(ssize_t *len, ssize_t bsize, int fd)
+static t_list	*ft_gnl_loop(size_t *len, size_t bsize, int fd)
 {
 	t_str	line;
 	ssize_t	read_size;
@@ -88,7 +88,7 @@ static size_t	ft_gnl_file(t_list **readed, t_list **lst, int fd,
 	end = *lst;
 	if (end == NULL)
 		lst = readed + fd;
-	while (1)
+	while (len == 0 || !ft_iseol(tmp->content))
 	{
 		tmp = ft_gnl_loop(&len, bsize, fd);
 		if (tmp == NULL)
@@ -98,8 +98,6 @@ static size_t	ft_gnl_file(t_list **readed, t_list **lst, int fd,
 		else
 			ft_lstadd_back(&end, tmp);
 		end = tmp;
-		if (ft_iseol(tmp->content))
-			break ;
 	}
 	if (len == (size_t)1 << 62)
 		ft_free1024(readed);
