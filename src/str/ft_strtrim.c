@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:32:37 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/22 17:57:54 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/20 04:46:25 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (c)
 	{
 		i++;
-		if (ft_in(c, set) != -1)
+		if (ft_in(c, set) == -1)
 			len = i;
 		c = s1[i];
 	}
