@@ -6,22 +6,11 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:34:26 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/20 01:03:10 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/20 01:10:50 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1 	
-#endif
-char	*ft_gnl(int fd, size_t bsize);
-char	*get_next_line(int fd)
-{
-	if (fd >= 0 && fd < 1024 && BUFFER_SIZE >= 0)
-		return (ft_gnl(fd, BUFFER_SIZE));
-	return (0);
-}
-//non
 
 static void	*ft_free1024(t_list **readed)
 {
@@ -46,20 +35,18 @@ static char	*ft_freegnl(t_list **readed, int fd)
 	return (NULL);
 }
 
-//mettre len a -1 si erreur ??
 static t_list	*ft_gnl_loop(size_t *len, size_t bsize, int fd)
 {
 	t_str	line;
 	ssize_t	read_size;
 	t_list	*tmp;
 
+	read_size = 0;
 	line = (t_str){malloc(bsize * sizeof(char)), 0};
 	if (line.s == NULL)
-	{
 		*len = (size_t)1 << 62;
-		return (NULL);
-	}
-	read_size = read(fd, line.s, bsize);
+	else
+		read_size = read(fd, line.s, bsize);
 	if (read_size <= 0)
 	{
 		free(line.s);
@@ -106,7 +93,6 @@ static size_t	ft_gnl_file(t_list **readed, t_list **lst, int fd,
 	return (len);
 }
 
-//enlever else if
 char	*ft_gnl(int fd, size_t bsize)
 {
 	static t_list	*readed[1024] = {NULL};
@@ -133,10 +119,5 @@ char	*ft_gnl(int fd, size_t bsize)
 	line = ft_lsttstr_to_str(readed + fd, len, &ft_tstrfree, &ft_iseol);
 	if (line == NULL)
 		ft_free1024(readed);
-	else if (!*line)
-	{
-		free(line);
-		return (NULL);
-	}
 	return (line);
 }
