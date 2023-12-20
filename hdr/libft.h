@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/19 19:28:13 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/20 01:26:06 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,15 @@ int		ft_tolower(int c);
 int		ft_toupper(int c);
 
 //file
-char	*get_next_line(int fd);
+t_str	ft_gnl_tstr(int fd, size_t bsize);
 char	*ft_gnl(int fd, size_t bsize);
 
 //lst
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list	*ft_lstnew(void *content);
+t_str	ft_lsttstr_to_tstr(t_list **lst, size_t len, void (del)(void *),
+			short (end)(t_str *));
 size_t	ft_lstsize(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);

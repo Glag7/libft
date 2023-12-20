@@ -1,6 +1,6 @@
 NAME = libft.a
 COMP = cc 
-CFLAGS = -Wall -Wextra #-Werror
+CFLAGS = -Wall -Wextra -Werror
 
 SRC_ARR = ft_freearr.c \
 	  ft_freenarr.c \
@@ -20,11 +20,13 @@ SRC_CHAR = ft_isalnum.c \
 	   ft_tolower.c \
 	   ft_toupper.c
 
-SRC_FILE = ft_gnl.c
+SRC_FILE = ft_gnl_tstr.c \
+	   ft_gnl.c
 
 SRC_LST = ft_lstlast.c \
 	  ft_lstmap.c \
 	  ft_lstnew.c \
+	  ft_lsttstr_to_tstr.c \
 	  ft_lstsize.c \
 	  ft_lstadd_back.c \
 	  ft_lstadd_front.c \
