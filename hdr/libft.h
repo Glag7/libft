@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/20 01:26:06 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/20 17:20:55 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlen(const char *s);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	**ft_split(char const *s, char c);
+char	**ft_split_set(char const *s, const char *c);
 char	*ft_itoa(ssize_t n);
 char	*ft_itoabase(ssize_t n, const char *base);
 char	*ft_strchr(const char *s, int c);

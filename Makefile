@@ -64,6 +64,7 @@ SRC_STR = ft_atoi.c \
 	  ft_strlen.c \
 	  ft_striteri.c \
 	  ft_split.c \
+	  ft_split_set.c \
 	  ft_itoa.c \
 	  ft_itoabase.c \
 	  ft_strchr.c \
