@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/20 17:20:55 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/21 11:38:57 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,15 @@ typedef struct s_str
 }	t_str;
 
 //arr
+ssize_t	ft_chrarr_int(int *arr, int tofind, size_t len);
+ssize_t	ft_chrarr_len(void *arr, void *tofind, size_t flen, size_t len);
+ssize_t	ft_chrarr_long(ssize_t *arr, ssize_t tofind, size_t len);
+ssize_t	ft_chrarr_ptr(void **arr, void *tofind, size_t len,
+			char (*cmp)(void *, void *));
 void	ft_delarr(void **arr, void (del)(void *));
 void	ft_delnarr(void **arr, void (del)(void *), size_t n);
 void	ft_freearr(void **arr);
 void	ft_freenarr(void **arr, size_t n);
-void	ft_swap(void *a, void *b, void *(cpy)(void *, void *));
 void	ft_swapint(int *a, int *b);
 void	ft_swaplen(void *a, void *b, size_t len);
 void	ft_swaplong(size_t *a, size_t *b);

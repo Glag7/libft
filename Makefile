@@ -2,11 +2,14 @@ NAME = libft.a
 COMP = cc 
 CFLAGS = -Wall -Wextra -Werror
 
-SRC_ARR = ft_freearr.c \
+SRC_ARR = ft_chrarr_int \
+	  ft_chrarr_len \
+	  ft_chrarr_long \
+	  ft_chrarr_ptr \
+	  ft_freearr.c \
 	  ft_freenarr.c \
 	  ft_delarr.c \
 	  ft_delnarr.c \
-	  ft_swap.c \
 	  ft_swapint.c \
 	  ft_swaplen.c \
 	  ft_swaplong.c \

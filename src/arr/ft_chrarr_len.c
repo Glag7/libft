@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swap.c                                          :+:      :+:    :+:   */
+/*   ft_chrarr_len.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 16:38:34 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/22 17:10:03 by glaguyon         ###   ########.fr       */
+/*   Created: 2023/12/21 11:24:25 by glaguyon          #+#    #+#             */
+/*   Updated: 2023/12/21 11:29:46 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_swap(void *a, void *b, void *(cpy)(void *, void *))
+ssize_t	ft_chrarr_len(void *arr, void *tofind, size_t flen, size_t len)
 {
-	void	*tmp;
+	size_t	i;
+	char	*ptr;
 
-	tmp = NULL;
-	cpy(tmp, b);
-	cpy(b, a);
-	cpy(a, tmp);
+	i = 0;
+	ptr = (char *) arr;
+	len *= flen;
+	while (i < len)
+	{
+		if (ft_memcmp(ptr + i, tofind, flen) == 0)
+			return (i);
+		i += flen;
+	}
+	return (-1);
 }
