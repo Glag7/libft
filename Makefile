@@ -2,10 +2,10 @@ NAME = libft.a
 COMP = cc 
 CFLAGS = -Wall -Wextra -Werror
 
-SRC_ARR = ft_chrarr_int \
-	  ft_chrarr_len \
-	  ft_chrarr_long \
-	  ft_chrarr_ptr \
+SRC_ARR = ft_chrarr_int.c \
+	  ft_chrarr_len.c \
+	  ft_chrarr_long.c \
+	  ft_chrarr_ptr.c \
 	  ft_freearr.c \
 	  ft_freenarr.c \
 	  ft_delarr.c \
