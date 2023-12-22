@@ -10,6 +10,10 @@ SRC_ARR = ft_chrarr_int.c \
 	  ft_freenarr.c \
 	  ft_delarr.c \
 	  ft_delnarr.c \
+	  ft_sortint.c \
+	  ft_sortlen.c \
+	  ft_sortlong.c \
+	  ft_sortptr.c \
 	  ft_swapint.c \
 	  ft_swaplen.c \
 	  ft_swaplong.c \

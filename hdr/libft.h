@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/21 11:38:57 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/22 21:44:48 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,14 @@ void	ft_delarr(void **arr, void (del)(void *));
 void	ft_delnarr(void **arr, void (del)(void *), size_t n);
 void	ft_freearr(void **arr);
 void	ft_freenarr(void **arr, size_t n);
+void	ft_sortint(int *arr, size_t len, char rev);
+void	ft_sortlen(void *arr, size_t len, char rev, size_t memlen);
+void	ft_sortlong(long *arr, size_t len, char rev);
+void	ft_sortptr(void **arr, size_t len, char rev,
+		char (*cmp)(void *, void *));
 void	ft_swapint(int *a, int *b);
 void	ft_swaplen(void *a, void *b, size_t len);
-void	ft_swaplong(size_t *a, size_t *b);
+void	ft_swaplong(long *a, long *b);
 void	ft_swapptr(void **a, void **b);
 
 //char
