@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 17:31:21 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/22 21:45:40 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/28 00:36:14 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ static size_t	ft_part_i(void **arr, size_t len, char (*cmp)(void *, void *))
 	mid = arr[(len - 1) / 2];
 	while (i <= j)
 	{
-		while (!cmp(mid, arr[i]))
+		while (cmp(arr[i], mid))
 			i++;
-		while (!cmp(arr[j], mid))
+		while (cmp(mid, arr[j]))
 			j--;
 		if (i <= j)
 		{
@@ -92,11 +92,11 @@ static void	ft_sortptr_rec_i(void **arr, size_t len,
 		ft_sortptr_rec_i(arr, tmp, cmp);
 		ft_sortptr_rec_i(arr + tmp, len - tmp, cmp);
 	}
-	if (len == 3 && !cmp(arr[0], arr[2]))
+	if (len == 3 && cmp(arr[2], arr[0]))
 		ft_swapptr(arr, arr + 2);
-	if (len == 3 && !cmp(arr[1], arr[2]))
+	if (len == 3 && cmp(arr[2], arr[1]))
 		ft_swapptr(arr + 1, arr + 2);
-	if ((len == 2 || len == 3) && !cmp(arr[0], arr[1]))
+	if ((len == 2 || len == 3) && cmp(arr[1], arr[0]))
 		ft_swapptr(arr, arr + 1);
 }
 
