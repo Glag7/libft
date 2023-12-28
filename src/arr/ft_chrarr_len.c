@@ -6,13 +6,14 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 11:24:25 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/21 11:29:46 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/28 15:32:04 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-ssize_t	ft_chrarr_len(void *arr, void *tofind, size_t flen, size_t len)
+ssize_t	ft_chrarr_len(const void *restrict arr, const void *restrict tofind,
+		size_t flen, size_t len)
 {
 	size_t	i;
 	char	*ptr;

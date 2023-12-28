@@ -6,15 +6,15 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 17:01:59 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/22 21:44:08 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/28 16:37:01 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_swaplong(long *a, long *b)
+inline void	ft_swaplong(ssize_t *a, ssize_t *b)
 {
-	long	tmp;
+	ssize_t	tmp;
 
 	tmp = *a;
 	*a = *b;

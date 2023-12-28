@@ -6,15 +6,15 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 17:04:18 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/22 17:05:28 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/28 16:37:05 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_swapptr(void **a, void **b)
+inline void	ft_swapptr(void *a, void *b)
 {
 	void	*tmp;
 
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+	tmp = *(void **)a;
+	*(void **)a = *(void **)b;
+	*(void **)b = tmp;
 }

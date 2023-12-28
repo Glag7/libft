@@ -6,13 +6,14 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 17:31:21 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/28 00:36:14 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/28 18:04:28 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_part(void **arr, size_t len, char (*cmp)(void *, void *))
+static inline size_t	ft_part(void **restrict arr, size_t len,
+			char (*cmp)(void *restrict, void *restrict))
 {
 	size_t	i;
 	size_t	j;
@@ -37,8 +38,8 @@ static size_t	ft_part(void **arr, size_t len, char (*cmp)(void *, void *))
 	return (j + 1);
 }
 
-static void	ft_sortptr_rec(void **arr, size_t len,
-	char (*cmp)(void *, void*))
+static void	ft_sortptr_rec(void **restrict arr, size_t len,
+		char (*cmp)(void *restrict, void *restrict))
 {
 	size_t	tmp;
 
@@ -56,11 +57,12 @@ static void	ft_sortptr_rec(void **arr, size_t len,
 		ft_swapptr(arr, arr + 1);
 }
 
-static size_t	ft_part_i(void **arr, size_t len, char (*cmp)(void *, void *))
+static inline size_t	ft_part_i(void **restrict arr, size_t len,
+			char (*cmp)(void *restrict, void *restrict))
 {
-	size_t	i;
-	size_t	j;
-	void	*mid;
+	size_t				i;
+	size_t				j;
+	void	*restrict	mid;
 
 	i = 0;
 	j = len - 1;
@@ -81,8 +83,8 @@ static size_t	ft_part_i(void **arr, size_t len, char (*cmp)(void *, void *))
 	return (j + 1);
 }
 
-static void	ft_sortptr_rec_i(void **arr, size_t len,
-	char (*cmp)(void *, void*))
+static void	ft_sortptr_rec_i(void **restrict arr, size_t len,
+		char (*cmp)(void *restrict, void *restrict))
 {
 	size_t	tmp;
 
@@ -100,11 +102,11 @@ static void	ft_sortptr_rec_i(void **arr, size_t len,
 		ft_swapptr(arr, arr + 1);
 }
 
-void	ft_sortptr(void **arr, size_t len, char rev,
-		char (*cmp)(void *, void *))
+void	ft_sortptr(void *restrict arr, size_t len, char rev,
+		char (*cmp)(void *restrict, void *restrict))
 {
-	if (rev)
-		ft_sortptr_rec(arr, len, cmp);
+	if (!rev)
+		ft_sortptr_rec((void **restrict) arr, len, cmp);
 	else
-		ft_sortptr_rec_i(arr, len, cmp);
+		ft_sortptr_rec_i((void **restrict)arr, len, cmp);
 }

@@ -6,13 +6,13 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 17:31:21 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/22 21:33:37 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/28 17:55:33 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_part(int *arr, size_t len)
+inline static size_t	ft_part(int *restrict arr, size_t len)
 {
 	size_t	i;
 	size_t	j;
@@ -37,7 +37,7 @@ static size_t	ft_part(int *arr, size_t len)
 	return (j + 1);
 }
 
-static void	ft_sortint_rec(int *arr, size_t len)
+static void	ft_sortint_rec(int *restrict arr, size_t len)
 {
 	size_t	tmp;
 
@@ -55,7 +55,7 @@ static void	ft_sortint_rec(int *arr, size_t len)
 		ft_swapint(arr, arr + 1);
 }
 
-static size_t	ft_part_i(int *arr, size_t len)
+inline static size_t	ft_part_i(int *restrict arr, size_t len)
 {
 	size_t	i;
 	size_t	j;
@@ -80,7 +80,7 @@ static size_t	ft_part_i(int *arr, size_t len)
 	return (j + 1);
 }
 
-static void	ft_sortint_rec_i(int *arr, size_t len)
+static void	ft_sortint_rec_i(int *restrict arr, size_t len)
 {
 	size_t	tmp;
 
@@ -98,9 +98,9 @@ static void	ft_sortint_rec_i(int *arr, size_t len)
 		ft_swapint(arr, arr + 1);
 }
 
-void	ft_sortint(int *arr, size_t len, char rev)
+void	ft_sortint(int *restrict arr, size_t len, char rev)
 {
-	if (rev)
+	if (!rev)
 		ft_sortint_rec(arr, len);
 	else
 		ft_sortint_rec_i(arr, len);

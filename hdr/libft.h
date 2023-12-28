@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/22 21:44:48 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/28 17:04:07 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,26 @@ typedef struct s_str
 }	t_str;
 
 //arr
-ssize_t	ft_chrarr_int(int *arr, int tofind, size_t len);
-ssize_t	ft_chrarr_len(void *arr, void *tofind, size_t flen, size_t len);
-ssize_t	ft_chrarr_long(ssize_t *arr, ssize_t tofind, size_t len);
-ssize_t	ft_chrarr_ptr(void **arr, void *tofind, size_t len,
-			char (*cmp)(void *, void *));
-void	ft_delarr(void **arr, void (del)(void *));
-void	ft_delnarr(void **arr, void (del)(void *), size_t n);
-void	ft_freearr(void **arr);
-void	ft_freenarr(void **arr, size_t n);
-void	ft_sortint(int *arr, size_t len, char rev);
-void	ft_sortlen(void *arr, size_t len, char rev, size_t memlen);
-void	ft_sortlong(long *arr, size_t len, char rev);
-void	ft_sortptr(void **arr, size_t len, char rev,
-		char (*cmp)(void *, void *));
+ssize_t	ft_chrarr_int(const int *restrict arr, int tofind, size_t len);
+ssize_t	ft_chrarr_len(const void *restrict arr, const void *restrict tofind,
+			size_t flen, size_t len);
+ssize_t	ft_chrarr_long(const ssize_t *restrict arr, ssize_t tofind, size_t len);
+ssize_t	ft_chrarr_ptr(const void *restrict arr, const void *restrict tofind,
+			size_t len,
+			char (*cmp)(const void *restrict, const void *restrict));
+void	ft_delarr(void *restrict arr, void (del)(void *restrict));
+void	ft_delnarr(void *restrict arr, void (del)(void *restrict), size_t n);
+void	ft_freearr(void *restrict arr);
+void	ft_freenarr(void *restrict arr, size_t n);
+void	ft_sortint(int *restrict arr, size_t len, char rev);
+void	ft_sortlen(void *restrict arr, size_t len, char rev, size_t memlen);
+void	ft_sortlong(long *restrict arr, size_t len, char rev);
+void	ft_sortptr(void *restrict arr, size_t len, char rev,
+			char (*cmp)(void *restrict, void *restrict));
 void	ft_swapint(int *a, int *b);
 void	ft_swaplen(void *a, void *b, size_t len);
-void	ft_swaplong(long *a, long *b);
-void	ft_swapptr(void **a, void **b);
+void	ft_swaplong(ssize_t *a, ssize_t *b);
+void	ft_swapptr(void *a, void *b);
 
 //char
 short	ft_isalnum(int c);

@@ -6,13 +6,13 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 17:31:21 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/22 21:33:29 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/28 17:55:41 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_part(long *arr, size_t len)
+static inline size_t	ft_part(long *restrict arr, size_t len)
 {
 	size_t	i;
 	size_t	j;
@@ -37,7 +37,7 @@ static size_t	ft_part(long *arr, size_t len)
 	return (j + 1);
 }
 
-static void	ft_sortlong_rec(long *arr, size_t len)
+static void	ft_sortlong_rec(long *restrict arr, size_t len)
 {
 	size_t	tmp;
 
@@ -55,7 +55,7 @@ static void	ft_sortlong_rec(long *arr, size_t len)
 		ft_swaplong(arr, arr + 1);
 }
 
-static size_t	ft_part_i(long *arr, size_t len)
+static inline size_t	ft_part_i(long *restrict arr, size_t len)
 {
 	size_t	i;
 	size_t	j;
@@ -80,7 +80,7 @@ static size_t	ft_part_i(long *arr, size_t len)
 	return (j + 1);
 }
 
-static void	ft_sortlong_rec_i(long *arr, size_t len)
+static void	ft_sortlong_rec_i(long *restrict arr, size_t len)
 {
 	size_t	tmp;
 
@@ -98,9 +98,9 @@ static void	ft_sortlong_rec_i(long *arr, size_t len)
 		ft_swaplong(arr, arr + 1);
 }
 
-void	ft_sortlong(long *arr, size_t len, char rev)
+void	ft_sortlong(long *restrict arr, size_t len, char rev)
 {
-	if (rev)
+	if (!rev)
 		ft_sortlong_rec(arr, len);
 	else
 		ft_sortlong_rec_i(arr, len);

@@ -6,17 +6,17 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 17:31:21 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/22 21:45:57 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/28 18:04:04 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_part(char *arr, size_t len, size_t memlen)
+static inline size_t	ft_part(char *restrict arr, size_t len, size_t memlen)
 {
-	size_t	i;
-	size_t	j;
-	char	*mid;
+	size_t				i;
+	size_t				j;
+	char	*restrict	mid;
 
 	i = 0;
 	j = (len - 1) * memlen;
@@ -37,7 +37,7 @@ static size_t	ft_part(char *arr, size_t len, size_t memlen)
 	return (j / memlen + 1);
 }
 
-static void	ft_sortlen_rec(char *arr, size_t len, size_t memlen)
+static void	ft_sortlen_rec(char *restrict arr, size_t len, size_t memlen)
 {
 	size_t	tmp;
 
@@ -55,11 +55,11 @@ static void	ft_sortlen_rec(char *arr, size_t len, size_t memlen)
 		ft_swaplen(arr, arr + 1, memlen);
 }
 
-static size_t	ft_part_i(char *arr, size_t len, size_t memlen)
+static inline size_t	ft_part_i(char *restrict arr, size_t len, size_t memlen)
 {
-	size_t	i;
-	size_t	j;
-	char	*mid;
+	size_t				i;
+	size_t				j;
+	char	*restrict	mid;
 
 	i = 0;
 	j = (len - 1) * memlen;
@@ -80,7 +80,7 @@ static size_t	ft_part_i(char *arr, size_t len, size_t memlen)
 	return (j / memlen + 1);
 }
 
-static void	ft_sortlen_rec_i(char *arr, size_t len, size_t memlen)
+static void	ft_sortlen_rec_i(char *restrict arr, size_t len, size_t memlen)
 {
 	size_t	tmp;
 
@@ -98,9 +98,9 @@ static void	ft_sortlen_rec_i(char *arr, size_t len, size_t memlen)
 		ft_swaplen(arr, arr + 1, memlen);
 }
 
-void	ft_sortlen(void *arr, size_t len, char rev, size_t memlen)
+void	ft_sortlen(void *restrict arr, size_t len, char rev, size_t memlen)
 {
-	if (rev)
+	if (!rev)
 		ft_sortlen_rec((char *) arr, len, memlen);
 	else
 		ft_sortlen_rec_i((char *) arr, len, memlen);

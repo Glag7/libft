@@ -6,13 +6,13 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 11:19:57 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/21 11:29:28 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/28 15:32:16 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-ssize_t	ft_chrarr_int(int *arr, int tofind, size_t len)
+ssize_t	ft_chrarr_int(const int *restrict arr, int tofind, size_t len)
 {
 	size_t	i;
 

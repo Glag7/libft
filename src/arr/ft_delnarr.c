@@ -6,25 +6,27 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 16:00:06 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/22 16:01:47 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/28 16:04:56 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_delnarr(void **arr, void (del)(void *), size_t n)
+void	ft_delnarr(void *restrict arr, void (del)(void *restrict), size_t n)
 {
-	size_t	i;
-	void	*tmp;
+	size_t				i;
+	void	*restrict	tmp;
+	void	**restrict	ptr;
 
 	i = 0;
-	tmp = arr[i];
+	ptr = arr;
+	tmp = ptr[i];
 	while (i < n)
 	{
 		del(tmp);
 		free(tmp);
 		i++;
-		tmp = arr[i];
+		tmp = ptr[i];
 	}
-	free(arr);
+	free(ptr);
 }
