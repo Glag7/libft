@@ -52,11 +52,11 @@ void	ft_swaplong(ssize_t *a, ssize_t *b);
 void	ft_swapptr(void *a, void *b);
 
 //char
-short	ft_isalnum(int c);
-short	ft_isalpha(int c);
-short	ft_isascii(int c);
-short	ft_isdigit(int c);
-short	ft_isprint(int c);
+char	ft_isalnum(int c);
+char	ft_isalpha(int c);
+char	ft_isascii(int c);
+char	ft_isdigit(int c);
+char	ft_isprint(int c);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 
