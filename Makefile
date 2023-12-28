@@ -133,11 +133,11 @@ all : $(NAME) arr char file lst math mem print str tstr
 good : $(NAME) arr file lst mem str tstr
 
 $(NAME) : 
-	@ ar rcs $(NAME) $(HDR)libft.h
+	@ ar rcs $(NAME)
 
 %.o: %.c
 	@ $(COMP) $(CFLAGS) -c $^ -o $@ -I $(HDR)
-	@ ar rcs $(NAME) $^
+	@ ar rcs $(NAME) $@
 
 #folders
 
