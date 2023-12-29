@@ -1,13 +1,15 @@
 NAME = libft.a
 COMP = cc 
 CFLAGS = -Wall -Wextra -Werror
+SRC = src/
+OBJ = obj/
 HDR = hdr/
 
 PERCENT = %
 
 #SRCS
 
-SRC_ARR = $(addprefix src/arr/, \
+SRC_ARR = $(addprefix arr/, \
 	  ft_chrarr_int.c \
 	  ft_chrarr_len.c \
 	  ft_chrarr_long.c \
@@ -25,7 +27,7 @@ SRC_ARR = $(addprefix src/arr/, \
 	  ft_swaplong.c \
 	  ft_swapptr.c )
 
-SRC_CHAR = $(addprefix src/char/, \
+SRC_CHAR = $(addprefix char/, \
 	   ft_isalnum.c \
 	   ft_isalpha.c \
 	   ft_isascii.c \
@@ -34,11 +36,11 @@ SRC_CHAR = $(addprefix src/char/, \
 	   ft_tolower.c \
 	   ft_toupper.c )
 
-SRC_FILE = $(addprefix src/file/, \
+SRC_FILE = $(addprefix file/, \
 	   ft_gnl_tstr.c \
 	   ft_gnl.c )
 
-SRC_LST = $(addprefix src/lst/, \
+SRC_LST = $(addprefix lst/, \
 	  ft_lstlast.c \
 	  ft_lstmap.c \
 	  ft_lstnew.c \
@@ -52,13 +54,13 @@ SRC_LST = $(addprefix src/lst/, \
 	  ft_lstpop.c \
 	  ft_lsttstr_to_str.c )
 
-SRC_MATH = $(addprefix src/math/, \
+SRC_MATH = $(addprefix math/, \
 	   ft_max.c \
 	   ft_min.c \
 	   ft_powi.c \
 	   ft_sqrti.c )
 
-SRC_MEM = $(addprefix src/mem/, \
+SRC_MEM = $(addprefix mem/, \
 	  ft_bspace.c \
 	  ft_bzchar.c \
 	  ft_bzero.c \
@@ -69,14 +71,14 @@ SRC_MEM = $(addprefix src/mem/, \
 	  ft_memset.c \
 	  ft_memcmp.c )
 
-SRC_PRINT = $(addprefix src/print/, \
+SRC_PRINT = $(addprefix print/, \
 	    ft_putchar_fd.c \
 	    ft_putendl_fd.c \
 	    ft_putnbr_fd.c \
 	    ft_putnbrbase_fd.c \
 	    ft_putstr_fd.c )
 
-SRC_STR = $(addprefix src/str/, \
+SRC_STR = $(addprefix str/, \
 	  ft_atoi.c \
 	  ft_atoibase.c \
 	  ft_in.c \
@@ -98,7 +100,7 @@ SRC_STR = $(addprefix src/str/, \
 	  ft_substr.c \
 	  ft_strncmp.c )
 
-SRC_TSTR = $(addprefix src/tstr/, \
+SRC_TSTR = $(addprefix tstr/, \
 	   ft_tstr_to_lst.c \
 	   ft_iseol.c \
 	   ft_tstr_dupstr.c \
@@ -125,63 +127,63 @@ OBJ_STR = $(SRC_STR:.c=.o)
 
 OBJ_TSTR = $(SRC_TSTR:.c=.o)
 
-
-
 #rules
 
 all : $(NAME)
 
+$(NAME) : arr char file lst math mem print str tstr
+
 good : arr file lst mem str tstr
 
-$(NAME) : arr char file lst math mem print str tstr
-	@ ar rcs $(NAME)
-
-%.o: %.c
+$(OBJ)%.o: $(SRC)%.c
+	@ mkdir -p $(dir $@)
 	@ $(COMP) $(CFLAGS) -c $^ -o $@ -I $(HDR)
 	@ ar rcs $(NAME) $@
 
 #folders
 
-arr : mem $(OBJ_ARR)
+arr : mem $(addprefix $(OBJ), $(OBJ_ARR))
+	@ mkdir -p obj/arr
 	@ echo "compiling arr..."
 
-char : $(OBJ_CHAR)
+char : $(addprefix $(OBJ), $(OBJ_CHAR))
+	@ mkdir -p obj/char
 	@ echo "compiling char..."
 
-file : lst $(OBJ_FILE)
+
+file : lst $(addprefix $(OBJ), $(OBJ_FILE))
+	@ mkdir -p obj/file
 	@ echo "compiling file..."
 
-lst : mem $(OBJ_LST)
+lst : mem $(addprefix $(OBJ), $(OBJ_LST))
+	@ mkdir -p obj/lst
 	@ echo "compiling lst..."
 
-math : $(OBJ_MATH)
+math : $(addprefix $(OBJ), $(OBJ_MATH))
+	@ mkdir -p obj/math
 	@ echo "compiling math..."
 
-mem : $(OBJ_MEM)
+mem : $(addprefix $(OBJ), $(OBJ_MEM))
+	@ mkdir -p obj/mem
 	@ echo "compiling mem..."
 
-print : mem lst $(OBJ_PRINT)
+print : mem lst $(addprefix $(OBJ), $(OBJ_PRINT))
+	@ mkdir -p obj/print
 	@ echo "compiling print..."
 
-str : mem lst $(OBJ_STR)
+str : mem lst $(addprefix $(OBJ), $(OBJ_STR))
+	@ mkdir -p obj/str
 	@ echo "compiling str..."
 
-tstr : mem lst str $(OBJ_TSTR)
+tstr : mem lst str $(addprefix $(OBJ), $(OBJ_TSTR))
+	@ mkdir -p obj/tstr
 	@ echo "compiling tstr..."
 
 #cleaning
 
 clean : 
-	@ rm -f $(OBJ_ARR) \
-	       	$(OBJ_CHAR) \
-	       	$(OBJ_FILE) \
-	       	$(OBJ_LST) \
-	       	$(OBJ_MATH) \
-	       	$(OBJ_MEM) \
-	       	$(OBJ_PRINT) \
-	       	$(OBJ_STR) \
-	       	$(OBJ_TSTR)
-	@echo "                                      ,,,,,,,,,                                 \n                                  ,,,..........,,.                              \n                        ,/*. .,,,*,,...........,,**,,...              ***,      \n       .,,           .*#(*,.....,,,,,.....,,,,,,,,..........           ,.       \n      ./#(.         .,......,.,,*****,,,,,,,,,..........,.......                \n     .(#(*         ,,,......,,**/(((///******,,,,...,,,,,......,,.              \n     ($(PERCENT)$(PERCENT)$(PERCENT)#/.   ...,,,,,,,,*****/(###(/*,,,,,,,**,,,,,*****,,,,,,,,...           \n     /$(PERCENT)&&&#/,,........,,,,,,,,,,*//*,.........,,***,,,,,,,,,,,...........       \n      .. .*,,.........,,,.......,,,,...........,,**,.......,,,.........,,,,     \n        .***,,,,....,,**,,,....,,**,,,,,,.,,,,,,****,,,**,,,***,,...,,,,,**.    \n        .*//*********////*******/////**********//((/*//********///******//(/,.  \n         .(((((///(((####((((((######(((((((((((#####((/******//((///((((##/*,. \n          ,($(PERCENT)$(PERCENT)######$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)###$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#(///////((#######$(PERCENT)$(PERCENT)#///*, \n     .,,**. .,/(#$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#((((((((##$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#((///, \n     ,(((/*.     .,/(#$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&&&&&&&&&&&&&&&&$(PERCENT)&&$(PERCENT)$(PERCENT)#((###$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)###((/,  \n      ,/#(/,          .*/(#$(PERCENT)$(PERCENT)##$(PERCENT)$(PERCENT)&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#/,   ,(##########(/.   \n       .*#(*,,.               *(#######((#(####(((##((((*      ,,*/(###/,       \n        .*#$(PERCENT)$(PERCENT)$(PERCENT)#(,             .*#&@@@@@@@@@@@@@@@@@@@&$(PERCENT)/                        \n            *#$(PERCENT)$(PERCENT)#*            . .&&&&&&&@@@@@@@@@@&&#(**...                     \n              ,,.     .**,,,($(PERCENT)$(PERCENT)###(((///(($(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)((#(((##$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)##(/*.               \n                  ..,/#$(PERCENT)$(PERCENT)#(#$(PERCENT)&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#(((#$(PERCENT)((//(((((((#$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#(/(*.           \n              ,/((##$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#((#$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#######(((((((((((((((###((//(((((*.            \n                *(((#$(PERCENT)$(PERCENT)&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&$(PERCENT)$(PERCENT)###$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)((//((((((((((//(#####(/.             \n                  ,#$(PERCENT)$(PERCENT)$(PERCENT)&&&&&&$(PERCENT)$(PERCENT)########$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#(////////////(((((((/               \n                    ,(&&&&&&&$(PERCENT)###########$(PERCENT)&$(PERCENT)#(//////////((((((((/.              \n                    /$(PERCENT)&&&&&&&$(PERCENT)$(PERCENT)#$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)####$(PERCENT)$(PERCENT)$(PERCENT)#(/////////((((((((/               \n                 ,($(PERCENT)$(PERCENT)&&&&&&&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&@@$(PERCENT)//($(PERCENT)$(PERCENT)$(PERCENT)#(((///////(###/((/,               \n               *(##$(PERCENT)$(PERCENT)&&&&&&&&$(PERCENT)$(PERCENT)$(PERCENT)##$(PERCENT)@@@@&&&$(PERCENT)$(PERCENT)$(PERCENT)##((((/////($(PERCENT)&@&$(PERCENT)#/.               \n             ,#####$(PERCENT)$(PERCENT)&&&&&&&$(PERCENT)$(PERCENT)$(PERCENT)##(#&@@@&&&&$(PERCENT)$(PERCENT)$(PERCENT)##(((((//((#$(PERCENT)&&#(/*               \n            .*#####$(PERCENT)$(PERCENT)&&&&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)###((#$(PERCENT)&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)###((((((((###(((/,              \n           ,/(###$(PERCENT)$(PERCENT)$(PERCENT)&&&&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)###########$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)####((((((((((((((/,             \n         ./(#$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)###########$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)####(((((((((((((((,            \n            *$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&&&&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#########$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#########(((((((((*.           \n           ./$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&&&&&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)####$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)###(((/////((((/,           \n           *#$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&&&&&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#(((((((((((((((/,           \n          .($(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&&&&&&&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)/($(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&&&&$(PERCENT)######((((((((((((/.  ..       \n          ,($(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&&$(PERCENT)#$(PERCENT)$(PERCENT)&&&&&&$(PERCENT)(,/#&&&&&&&&&&$(PERCENT)####$(PERCENT)$(PERCENT)$(PERCENT)####(((#$(PERCENT)$(PERCENT)##/, .*,   ... \n          *($(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&$(PERCENT)#*($(PERCENT)&&&&@&$(PERCENT)/**/&&&&&&&&$(PERCENT)$(PERCENT)##$(PERCENT)$(PERCENT)&&&$(PERCENT)#######$(PERCENT)&&&##(/*,.  ,**. \n           ..,#$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#/,*#&&&&@&&(/,../($(PERCENT)&&&&$(PERCENT)##$(PERCENT)&&&&$(PERCENT)####(((($(PERCENT)&&&$(PERCENT)(/**/(((/*,  \n              .#$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#/*,/#&&&&&&$(PERCENT)#(*,,,*(&&&$(PERCENT)#(#$(PERCENT)&&$(PERCENT)#(((((((((#$(PERCENT)$(PERCENT)((///////*.   \n               *#$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#(/,,...,,,,*($(PERCENT)&&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&$(PERCENT)$(PERCENT)#(((((((((((((((((((/////*,      \n                *(/#$(PERCENT)$(PERCENT)#(/*,......,/#&&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)##(((((((((((((((/*,.          \n                    *#&&$(PERCENT)$(PERCENT)#(//(($(PERCENT)&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#########$(PERCENT)$(PERCENT)$(PERCENT)#####(((##(,                \n                     ,($(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&$(PERCENT)#(#&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#############$(PERCENT)$(PERCENT)##$(PERCENT)$(PERCENT)#/.                 \n                       .,.  ,#$(PERCENT)$(PERCENT)$(PERCENT)##$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)###########$(PERCENT)$(PERCENT)$(PERCENT)#$(PERCENT)#(,                   \n                              .,*.(###$(PERCENT)$(PERCENT)#(/(######$(PERCENT)$(PERCENT)$(PERCENT)//($(PERCENT)#*.                    \n                                    .*###$(PERCENT)$(PERCENT)##((///((#$(PERCENT)$(PERCENT)#(.                      \n                                       ,/####$(PERCENT)$(PERCENT)&&&$(PERCENT)$(PERCENT)#(/.                        \n                                          ,/#$(PERCENT)$(PERCENT)#####,.                          "
+	@ rm -rf obj/
+	@ echo "                                      ,,,,,,,,,                                 \n                                  ,,,..........,,.                              \n                        ,/*. .,,,*,,...........,,**,,...              ***,      \n       .,,           .*#(*,.....,,,,,.....,,,,,,,,..........           ,.       \n      ./#(.         .,......,.,,*****,,,,,,,,,..........,.......                \n     .(#(*         ,,,......,,**/(((///******,,,,...,,,,,......,,.              \n     ($(PERCENT)$(PERCENT)$(PERCENT)#/.   ...,,,,,,,,*****/(###(/*,,,,,,,**,,,,,*****,,,,,,,,...           \n     /$(PERCENT)&&&#/,,........,,,,,,,,,,*//*,.........,,***,,,,,,,,,,,...........       \n      .. .*,,.........,,,.......,,,,...........,,**,.......,,,.........,,,,     \n        .***,,,,....,,**,,,....,,**,,,,,,.,,,,,,****,,,**,,,***,,...,,,,,**.    \n        .*//*********////*******/////**********//((/*//********///******//(/,.  \n         .(((((///(((####((((((######(((((((((((#####((/******//((///((((##/*,. \n          ,($(PERCENT)$(PERCENT)######$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)###$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#(///////((#######$(PERCENT)$(PERCENT)#///*, \n     .,,**. .,/(#$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#((((((((##$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#((///, \n     ,(((/*.     .,/(#$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&&&&&&&&&&&&&&&&$(PERCENT)&&$(PERCENT)$(PERCENT)#((###$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)###((/,  \n      ,/#(/,          .*/(#$(PERCENT)$(PERCENT)##$(PERCENT)$(PERCENT)&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#/,   ,(##########(/.   \n       .*#(*,,.               *(#######((#(####(((##((((*      ,,*/(###/,       \n        .*#$(PERCENT)$(PERCENT)$(PERCENT)#(,             .*#&@@@@@@@@@@@@@@@@@@@&$(PERCENT)/                        \n            *#$(PERCENT)$(PERCENT)#*            . .&&&&&&&@@@@@@@@@@&&#(**...                     \n              ,,.     .**,,,($(PERCENT)$(PERCENT)###(((///(($(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)((#(((##$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)##(/*.               \n                  ..,/#$(PERCENT)$(PERCENT)#(#$(PERCENT)&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#(((#$(PERCENT)((//(((((((#$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#(/(*.           \n              ,/((##$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#((#$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#######(((((((((((((((###((//(((((*.            \n                *(((#$(PERCENT)$(PERCENT)&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&$(PERCENT)$(PERCENT)###$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)((//((((((((((//(#####(/.             \n                  ,#$(PERCENT)$(PERCENT)$(PERCENT)&&&&&&$(PERCENT)$(PERCENT)########$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#(////////////(((((((/               \n                    ,(&&&&&&&$(PERCENT)###########$(PERCENT)&$(PERCENT)#(//////////((((((((/.              \n                    /$(PERCENT)&&&&&&&$(PERCENT)$(PERCENT)#$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)####$(PERCENT)$(PERCENT)$(PERCENT)#(/////////((((((((/               \n                 ,($(PERCENT)$(PERCENT)&&&&&&&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&@@$(PERCENT)//($(PERCENT)$(PERCENT)$(PERCENT)#(((///////(###/((/,               \n               *(##$(PERCENT)$(PERCENT)&&&&&&&&$(PERCENT)$(PERCENT)$(PERCENT)##$(PERCENT)@@@@&&&$(PERCENT)$(PERCENT)$(PERCENT)##((((/////($(PERCENT)&@&$(PERCENT)#/.               \n             ,#####$(PERCENT)$(PERCENT)&&&&&&&$(PERCENT)$(PERCENT)$(PERCENT)##(#&@@@&&&&$(PERCENT)$(PERCENT)$(PERCENT)##(((((//((#$(PERCENT)&&#(/*               \n            .*#####$(PERCENT)$(PERCENT)&&&&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)###((#$(PERCENT)&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)###((((((((###(((/,              \n           ,/(###$(PERCENT)$(PERCENT)$(PERCENT)&&&&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)###########$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)####((((((((((((((/,             \n         ./(#$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)###########$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)####(((((((((((((((,            \n            *$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&&&&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#########$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#########(((((((((*.           \n           ./$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&&&&&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)####$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)###(((/////((((/,           \n           *#$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&&&&&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#(((((((((((((((/,           \n          .($(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&&&&&&&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)/($(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&&&&$(PERCENT)######((((((((((((/.  ..       \n          ,($(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&&$(PERCENT)#$(PERCENT)$(PERCENT)&&&&&&$(PERCENT)(,/#&&&&&&&&&&$(PERCENT)####$(PERCENT)$(PERCENT)$(PERCENT)####(((#$(PERCENT)$(PERCENT)##/, .*,   ... \n          *($(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&$(PERCENT)#*($(PERCENT)&&&&@&$(PERCENT)/**/&&&&&&&&$(PERCENT)$(PERCENT)##$(PERCENT)$(PERCENT)&&&$(PERCENT)#######$(PERCENT)&&&##(/*,.  ,**. \n           ..,#$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#/,*#&&&&@&&(/,../($(PERCENT)&&&&$(PERCENT)##$(PERCENT)&&&&$(PERCENT)####(((($(PERCENT)&&&$(PERCENT)(/**/(((/*,  \n              .#$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#/*,/#&&&&&&$(PERCENT)#(*,,,*(&&&$(PERCENT)#(#$(PERCENT)&&$(PERCENT)#(((((((((#$(PERCENT)$(PERCENT)((///////*.   \n               *#$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#(/,,...,,,,*($(PERCENT)&&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&$(PERCENT)$(PERCENT)#(((((((((((((((((((/////*,      \n                *(/#$(PERCENT)$(PERCENT)#(/*,......,/#&&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)##(((((((((((((((/*,.          \n                    *#&&$(PERCENT)$(PERCENT)#(//(($(PERCENT)&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#########$(PERCENT)$(PERCENT)$(PERCENT)#####(((##(,                \n                     ,($(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)&&$(PERCENT)#(#&&$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)#############$(PERCENT)$(PERCENT)##$(PERCENT)$(PERCENT)#/.                 \n                       .,.  ,#$(PERCENT)$(PERCENT)$(PERCENT)##$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)$(PERCENT)###########$(PERCENT)$(PERCENT)$(PERCENT)#$(PERCENT)#(,                   \n                              .,*.(###$(PERCENT)$(PERCENT)#(/(######$(PERCENT)$(PERCENT)$(PERCENT)//($(PERCENT)#*.                    \n                                    .*###$(PERCENT)$(PERCENT)##((///((#$(PERCENT)$(PERCENT)#(.                      \n                                       ,/####$(PERCENT)$(PERCENT)&&&$(PERCENT)$(PERCENT)#(/.                        \n                                          ,/#$(PERCENT)$(PERCENT)#####,.                          "
 
 fclean : clean
 	@ rm -f $(NAME)
