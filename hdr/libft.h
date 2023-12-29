@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/29 17:14:06 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/29 21:39:28 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ t_str	ft_gnl_tstr(int fd, size_t bsize);
 char	*ft_gnl(int fd, size_t bsize);
 
 //lst
+t_list	*ft_lstat(t_list *lst, size_t n);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list	*ft_lstnew(void *content);

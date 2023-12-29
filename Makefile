@@ -41,6 +41,7 @@ SRC_FILE = $(addprefix file/, \
 	   ft_gnl.c )
 
 SRC_LST = $(addprefix lst/, \
+	  ft_lstat.c \
 	  ft_lstlast.c \
 	  ft_lstmap.c \
 	  ft_lstnew.c \

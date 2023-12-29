@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:57:48 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/29 18:45:51 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/29 21:41:47 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ size_t	ft_sqrti(size_t n)
 
 	if (n < 16)
 	{
-		if (n < 4)
-			return (!!n);
 		if (n < 9)
-			return (2);
+			return (!!n + n > 3);
 		return (3);
 	}
 	up = n / 4;
@@ -36,7 +34,7 @@ size_t	ft_sqrti(size_t n)
 		else if (n / mid < mid)
 			up = mid;
 		else
-			break;
+			break ;
 		mid = (up + down) / 2;
 	}
 	return (mid);
