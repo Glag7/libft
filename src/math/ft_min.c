@@ -6,13 +6,13 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 17:29:36 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/23 17:46:21 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/29 16:57:30 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-ssize_t	ft_min(ssize_t a, ssize_t b)
+inline ssize_t	ft_min(ssize_t a, ssize_t b)
 {
 	if (a < b)
 		return (a);

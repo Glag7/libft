@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/28 17:04:07 by glaguyon         ###   ########.fr       */
+/*   Updated: 2023/12/29 17:14:06 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ char	*ft_lsttstr_to_str(t_list **lst, size_t len, void (del)(void *),
 ssize_t	ft_max(ssize_t a, ssize_t b);
 ssize_t	ft_min(ssize_t a, ssize_t b);
 ssize_t	ft_powi(ssize_t x, size_t n);
+size_t	ft_sqrti(size_t n);
 
 //mem
 void	ft_bspace(void *s, size_t n);
