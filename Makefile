@@ -172,7 +172,7 @@ print : mem lst $(addprefix $(OBJ), $(OBJ_PRINT))
 	@ mkdir -p obj/print
 	@ echo "compiling print..."
 
-str : mem lst $(addprefix $(OBJ), $(OBJ_STR))
+str : mem lst arr $(addprefix $(OBJ), $(OBJ_STR))
 	@ mkdir -p obj/str
 	@ echo "compiling str..."
 
