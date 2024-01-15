@@ -1,0 +1,33 @@
+TODO
+
+arr :
+chrarr_int : 2* faster
+qsort : spare the stack
+
+char :
+less op
+
+lst :
+(c11)
+(lst_insert)
+(dlst)
+
+math :
+sqrt : use * instead of /
+
+mem :
+align + restrict
+memchr : use longptr
+
+print :
+(ft_printf)
+
+str :
+strlen : use longptr
+rework
+
+tstr :
+add str funcs
+use ptr instead of struct ?
+
+(trees)
