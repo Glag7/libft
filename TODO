@@ -28,6 +28,7 @@ rework
 
 tstr :
 add str funcs
-use ptr instead of struct ?
+use ptr instead of struct ? (union ?)
 
 (trees)
+(bigint)
