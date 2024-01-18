@@ -106,6 +106,7 @@ SRC_TSTR = $(addprefix tstr/, \
 	   ft_iseol.c \
 	   ft_tstr_dupstr.c \
 	   ft_tstrnew.c \
+	   ft_tstrdel.c \
 	   ft_tstrfree.c )
 
 #OBJS
@@ -152,7 +153,7 @@ char : $(addprefix $(OBJ), $(OBJ_CHAR))
 	@ echo "compiling char..."
 
 
-file : lst $(addprefix $(OBJ), $(OBJ_FILE))
+file : lst tstr $(addprefix $(OBJ), $(OBJ_FILE))
 	@ mkdir -p obj/file
 	@ echo "compiling file..."
 
@@ -168,7 +169,7 @@ mem : $(addprefix $(OBJ), $(OBJ_MEM))
 	@ mkdir -p obj/mem
 	@ echo "compiling mem..."
 
-print : mem lst $(addprefix $(OBJ), $(OBJ_PRINT))
+print : mem lst arr $(addprefix $(OBJ), $(OBJ_PRINT))
 	@ mkdir -p obj/print
 	@ echo "compiling print..."
 

@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_delnarr.c                                       :+:      :+:    :+:   */
+/*   ft_tstrdel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 16:00:06 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/28 16:04:56 by glaguyon         ###   ########.fr       */
+/*   Created: 2024/01/12 21:29:21 by glaguyon          #+#    #+#             */
+/*   Updated: 2024/01/18 17:59:38 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_delnarr(void *restrict arr, void (del)(void *restrict), size_t n)
+void	ft_tstrdel(void *tstr)
 {
-	size_t				i;
-	void	*restrict	tmp;
-	void	**restrict	ptr;
-
-	i = 0;
-	ptr = arr;
-	tmp = ptr[i];
-	while (i < n)
-	{
-		del(tmp);
-		i++;
-		tmp = ptr[i];
-	}
-	free(ptr);
+	free(((t_str *)tstr)->s);
+	*(t_str *)tstr = (t_str){0, 0};
 }

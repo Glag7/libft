@@ -24,7 +24,6 @@ void	ft_delarr(void *restrict arr, void (del)(void *restrict))
 	while (tmp)
 	{
 		del(tmp);
-		free(tmp);
 		i++;
 		tmp = ptr[i];
 	}

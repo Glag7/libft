@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -132,6 +131,7 @@ t_list	*ft_tstr_to_lst(t_str tstr, char *charset);
 short	ft_iseol(t_str *tstr);
 t_str	ft_tstr_dupstr(char *s, size_t len);
 t_str	ft_tstrnew(char *str, size_t len);
+void	ft_tstrdel(void *tstr);
 void	ft_tstrfree(void *tstr);
 
 #endif
