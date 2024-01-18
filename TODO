@@ -3,6 +3,7 @@ TODO
 arr :
 chrarr_int : 2* faster
 qsort : spare the stack
+_len : use custom funcs
 
 char :
 less op

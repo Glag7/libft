@@ -51,6 +51,7 @@ SRC_LST = $(addprefix lst/, \
 	  ft_lstadd_front.c \
 	  ft_lstclear.c \
 	  ft_lstdelone.c \
+	  ft_lstinsert.c \
 	  ft_lstiter.c \
 	  ft_lstpop.c \
 	  ft_lsttstr_to_str.c )
