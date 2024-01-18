@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstinsert.c                                     :+:      :+:    :+:   */
+/*   ft_dlstnew.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 18:05:45 by glaguyon          #+#    #+#             */
-/*   Updated: 2024/01/18 18:52:22 by glaguyon         ###   ########.fr       */
+/*   Created: 2024/01/18 18:35:29 by glaguyon          #+#    #+#             */
+/*   Updated: 2024/01/18 18:38:00 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstinsert(t_list **lst, t_list *node, size_t n)
+t_dlst	*ft_dlstnew(void *content)
 {
-	size_t	i;
-	t_list	*tmp;
-	t_list	*next;
+	t_dlst	*new;
 
-	i = 0;
-	tmp = *lst;
-	if (tmp == NULL)
-	{
-		*lst = node;
-		return ;
-	}
-	next = tmp->next;
-	while (next && i < n)
-	{
-		tmp = next;
-		next = tmp->next;
-		i++;
-	}
-	tmp->next = node;
-	ft_lstlast(node)->next = next;
+	new = malloc(sizeof(t_dlst));
+	if (new == NULL)
+		return (NULL);
+	new->next = new;
+	new->prev = new;
+	new->content = content;
 }

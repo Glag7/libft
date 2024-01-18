@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstinsert.c                                     :+:      :+:    :+:   */
+/*   ft_dlstadd_back.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 18:05:45 by glaguyon          #+#    #+#             */
-/*   Updated: 2024/01/18 18:52:22 by glaguyon         ###   ########.fr       */
+/*   Created: 2024/01/18 18:38:14 by glaguyon          #+#    #+#             */
+/*   Updated: 2024/01/18 19:02:56 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstinsert(t_list **lst, t_list *node, size_t n)
+//front
+void	ft_dlstadd_back(t_dlst **dlst, t_dlst *new)
 {
-	size_t	i;
-	t_list	*tmp;
-	t_list	*next;
+	t_dlst	*tmp;
 
-	i = 0;
-	tmp = *lst;
+	tmp = *dlst;
 	if (tmp == NULL)
 	{
-		*lst = node;
+		*dlst = new;
 		return ;
 	}
-	next = tmp->next;
-	while (next && i < n)
-	{
-		tmp = next;
-		next = tmp->next;
-		i++;
-	}
-	tmp->next = node;
-	ft_lstlast(node)->next = next;
+	if (next->next = next)
+		next->next = tmp->prev;
+	if (tmp->prev == tmp)// ?
+		tmp->prev = next->prev;
+	next->prev = tmp;
+	next->prev->next = tmp->next;
+	tmp->next = new;
 }
+
+//tmp->next
+//tmp->prev
+//tmp->prev->next
+//la meme avec next

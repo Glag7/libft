@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2024/01/18 18:10:08 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/01/18 18:12:09 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,19 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+//structs
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }	t_list;
+
+typedef struct s_dlst
+{
+	void			*content;
+	struct s_dlst	*next;
+	struct s_dlst	*prev;
+}	t_dlst;
 
 typedef struct s_str
 {
