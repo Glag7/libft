@@ -36,3 +36,4 @@ use ptr instead of struct ? (union ?)
 
 (trees)
 (bigint)
+PRINT MEMORY
