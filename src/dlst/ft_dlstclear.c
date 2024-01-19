@@ -19,14 +19,9 @@ void	ft_dlstclear(t_dlst **dlst, void (*del)(void *))
 	t_dlst	*next;
 
 	node = *dlst;
-	if (node != NULL && node == node->next)
-	{
-		if (del)
-			del(node->content);
-		free(node);
+	if (node == NULL)
 		return ;
-	}
-	start = node;
+	start = node->prev;
 	while (node != start)
 	{
 		next = node->next;
@@ -35,5 +30,8 @@ void	ft_dlstclear(t_dlst **dlst, void (*del)(void *))
 		free(node);
 		node = next;
 	}
+	if (del)
+		del(node->content);
+	free(node);
 	*dlst = NULL;
 }
