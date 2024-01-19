@@ -8,6 +8,9 @@ _len : use custom funcs
 char :
 less op
 
+dlst :
+betterswap
+
 lst :
 (c11)
 (lst_insert)
