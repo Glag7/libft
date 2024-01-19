@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:35:29 by glaguyon          #+#    #+#             */
-/*   Updated: 2024/01/18 18:38:00 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/01/19 01:53:39 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ t_dlst	*ft_dlstnew(void *content)
 	new->next = new;
 	new->prev = new;
 	new->content = content;
+	return (new);
 }

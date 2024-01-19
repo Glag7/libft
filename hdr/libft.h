@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2024/01/18 18:12:09 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/01/19 02:29:44 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,12 @@ char	ft_isdigit(int c);
 char	ft_isprint(int c);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+
+//dlst
+t_dlst	*ft_dlstnew(void *content);
+t_dlst	*ft_dlstremove(t_dlst **lst, ssize_t n);
+void	ft_dlstadd_front(t_dlst **dlst, t_dlst *new);
+void	ft_dlstclear(t_dlst **dlst, void (*del)(void *));
 
 //file
 t_str	ft_gnl_tstr(int fd, size_t bsize);

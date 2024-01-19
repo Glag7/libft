@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlstadd_back.c                                  :+:      :+:    :+:   */
+/*   ft_dlstadd_front.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:38:14 by glaguyon          #+#    #+#             */
-/*   Updated: 2024/01/18 19:02:56 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/01/19 02:28:51 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//front
-void	ft_dlstadd_back(t_dlst **dlst, t_dlst *new)
+void	ft_dlstadd_front(t_dlst **dlst, t_dlst *new)
 {
 	t_dlst	*tmp;
+	t_dlst	*tmp2;
 
+	*dlst = new;
 	tmp = *dlst;
 	if (tmp == NULL)
-	{
-		*dlst = new;
 		return ;
-	}
-	if (next->next = next)
-		next->next = tmp->prev;
-	if (tmp->prev == tmp)// ?
-		tmp->prev = next->prev;
-	next->prev = tmp;
-	next->prev->next = tmp->next;
-	tmp->next = new;
+	new->prev->next = tmp;
+	tmp->prev->next = new;
+	tmp2 = new->prev;
+	new->prev = tmp->prev;
+	tmp->prev = tmp2;
 }
-
-//tmp->next
-//tmp->prev
-//tmp->prev->next
-//la meme avec next

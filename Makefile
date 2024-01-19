@@ -37,7 +37,10 @@ SRC_CHAR = $(addprefix char/, \
 	   ft_toupper.c )
 
 SRC_DLST = $(addprefix dlst/, \
-	   )
+	   ft_dlstnew.c \
+	   ft_dlstremove.c \
+	   ft_dlstadd_front.c \
+	   ft_dlstclear.c)
 
 SRC_FILE = $(addprefix file/, \
 	   ft_gnl_tstr.c \
