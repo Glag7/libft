@@ -17,8 +17,8 @@ void	ft_dlstadd_front(t_dlst **dlst, t_dlst *new)
 	t_dlst	*tmp;
 	t_dlst	*tmp2;
 
-	*dlst = new;
 	tmp = *dlst;
+	*dlst = new;
 	if (tmp == NULL)
 		return ;
 	new->prev->next = tmp;
