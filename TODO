@@ -2,7 +2,7 @@ TODO
 
 arr :
 chrarr_int : 2* faster
-qsort : spare the stack
+qsort : spare the stack (+ ??? partitioning)
 _len : use custom funcs
 
 char :
