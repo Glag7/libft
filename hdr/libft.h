@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2024/01/19 02:29:44 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/01/28 15:39:24 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,23 @@
 //structs
 typedef struct s_list
 {
-	void			*content;
+	union
+	{
+		void			*content;
+		size_t			unum;
+		ssize_t			num;
+	};
 	struct s_list	*next;
 }	t_list;
 
 typedef struct s_dlst
 {
-	void			*content;
+	union
+	{
+		void			*content;
+		size_t			unum;
+		ssize_t			num;
+	};
 	struct s_dlst	*next;
 	struct s_dlst	*prev;
 }	t_dlst;
@@ -70,8 +80,10 @@ int		ft_toupper(int c);
 //dlst
 t_dlst	*ft_dlstnew(void *content);
 t_dlst	*ft_dlstremove(t_dlst **lst, ssize_t n);
+void	ft_dlstadd_back(t_dlst **dlst, t_dlst *new);
 void	ft_dlstadd_front(t_dlst **dlst, t_dlst *new);
 void	ft_dlstclear(t_dlst **dlst, void (*del)(void *));
+void	ft_dlstswap(t_dlst **dlst);
 
 //file
 t_str	ft_gnl_tstr(int fd, size_t bsize);

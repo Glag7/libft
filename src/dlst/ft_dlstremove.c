@@ -6,7 +6,7 @@
 /*   By: glaguyon <glaguyon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 02:17:26 by glaguyon          #+#    #+#             */
-/*   Updated: 2024/01/19 02:28:17 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/01/28 16:11:16 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_dlst	*ft_dlstremove(t_dlst **dlst, ssize_t n)
 
 	i = 0;
 	tmp = *dlst;
+	if (n == 0)
+		*dlst = tmp->next;
 	while (n >= 0 && i < n)
 	{
 		tmp = tmp->next;
