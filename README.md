@@ -27,4 +27,4 @@ typedef struct s_list
 
 # Usage
 
-`make` or `make bonus`. Call the functions.
+`make` or `make bonus`. Compile with `cc yourfile.c libft.a` and call the functions.
