@@ -17,7 +17,7 @@ t_str	ft_lsttstr_to_tstr(t_list **lst, size_t len, void (del)(void *),
 {
 	t_list	*ob;
 	t_str	s;
-	int		i;
+	size_t		i;
 
 	ob = *lst;
 	s = (t_str){malloc((len + 1) * sizeof(char)), len};
