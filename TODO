@@ -1,6 +1,8 @@
 TODO
 compilation taille size_t
 
+libft : ifdef heqders, prototype
+
 arr :
 chrarr_int : 2* faster
 qsort : spare the stack (+ ??? partitioning)
