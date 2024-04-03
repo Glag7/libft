@@ -6,17 +6,17 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2024/04/03 14:20:03 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/04/03 16:47:10 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stdint.h>
-# include <stdlib.h>
-# include <unistd.h>
-
+//# include <stdint.h>
+//# include <stdlib.h>
+//# include <unistd.h>
+/*
 //structs
 typedef struct s_list
 {
@@ -68,10 +68,24 @@ void	ft_swapint(int *a, int *b);
 void	ft_swaplen(void *a, void *b, size_t len);
 void	ft_swaplong(ssize_t *a, ssize_t *b);
 void	ft_swapptr(void *a, void *b);
-
+*/
 //char
-#include "ft_char.h"
+#  define ASCII 1
+#  define PRINT 2
+#  define LOWER 4
+#  define UPPER 8
+#  define SPACE 16
+#  define DIGIT 32
+#  define XDIGIT 64
+#  define PUNCT 128
+#  define ALPHA 12
+#  define ALNUM 44
 
+bool	ft_is(int bitmask, int c);
+int		ft_tolower(int c);
+int		ft_toupper(int c);
+
+/*
 //dlst
 t_dlst	*ft_dlstnew(void *content);
 t_dlst	*ft_dlstremove(t_dlst **lst, ssize_t n);
@@ -155,5 +169,5 @@ t_str	ft_tstr_dupstr(char *s, size_t len);
 t_str	ft_tstrnew(char *str, size_t len);
 void	ft_tstrdel(void *tstr);
 void	ft_tstrfree(void *tstr);
-
+*/
 #endif
