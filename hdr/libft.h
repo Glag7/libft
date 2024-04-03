@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2024/03/31 19:36:28 by glag             ###   ########.fr       */
+/*   Updated: 2024/04/03 14:20:03 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,7 @@ void	ft_swaplong(ssize_t *a, ssize_t *b);
 void	ft_swapptr(void *a, void *b);
 
 //char
-char	ft_isalnum(int c);
-char	ft_isalpha(int c);
-char	ft_isascii(int c);
-char	ft_isdigit(int c);
-char	ft_isprint(int c);
-int		ft_tolower(int c);
-int		ft_toupper(int c);
+#include "ft_char.h"
 
 //dlst
 t_dlst	*ft_dlstnew(void *content);

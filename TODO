@@ -1,8 +1,5 @@
-BURN THE NORME
-char :
-use normal defines instead of numbers
-
 TODO
+better makefile, better messages (babonnet)
 compilation taille size_t
 
 libft : ifdef heqders, prototype
@@ -11,9 +8,6 @@ arr :
 chrarr_int : 2* faster
 qsort : spare the stack (+ ??? partitioning)
 _len : use custom funcs
-
-char :
-less op
 
 dlst :
 betterswap
