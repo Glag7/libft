@@ -71,8 +71,6 @@ SRC_MATH = $(addprefix $(MATH), \
 	   ft_powi.c \
 	   ft_sqrti.c )
 SRC_MEM = $(addprefix $(MEM), \
-	  ft_bspace.c \
-	  ft_bzchar.c \
 	  ft_bzero.c \
 	  ft_calloc.c \
 	  ft_memchr.c \
@@ -129,63 +127,44 @@ OBJ_TSTR = $(SRC_TSTR:.c=.o)
 
 
 
+#rules
+all : $(NAME)
+std : arr file lst mem str tstr
+
 #folders rules
 $(OBJ) :
 	@ mkdir -p $(OBJ)
 $(ARR) $(CHAR) $(DLST) $(FILE) $(LST) $(MATH) $(MEM) $(PRINT) $(STR) $(TSTR): $(OBJ)
 	@ mkdir -p $(OBJ)$@
 
-#rules
-all : $(NAME)
-std : arr file lst mem str tstr
-
 $(NAME) : arr char dlst file lst math mem print str tstr
 
 $(OBJ)%.o: $(SRC)%.c
 	@echo $(dir $@)
-	$(COMP) $(CFLAGS) -c $^ -o $@ -I $(HDR) -D __$(shell echo $(notdir $(patsubst %/, %, $(dir $@))) | tr '[:lower:]' '[:upper:]')__
+	$(COMP) $(CFLAGS) -c $^ -o $@ -I $(HDR) -D __FT_$(shell echo $(notdir $(patsubst %/, %, $(dir $@))) | tr '[:lower:]' '[:upper:]')__
 	@ ar rcs $(NAME) $@
 
 #folders
-
-arr : mem $(addprefix $(OBJ), $(OBJ_ARR))
-	@ mkdir -p obj/arr
-	@ echo "compiling arr..."
-
+$(ARR:/=) : $(ARR) mem $(addprefix $(OBJ), $(OBJ_ARR))
+	@ echo "compiling $@..."
 $(CHAR:/=) : $(CHAR) $(addprefix $(OBJ), $(OBJ_CHAR))
 	@ echo "compiling $@..."
-
-dlst : mem $(addprefix $(OBJ), $(OBJ_DLST))
-	@ mkdir -p obj/dlst
-	@ echo "compiling dlst..."
-
-file : lst tstr $(addprefix $(OBJ), $(OBJ_FILE))
-	@ mkdir -p obj/file
-	@ echo "compiling file..."
-
-lst : mem $(addprefix $(OBJ), $(OBJ_LST))
-	@ mkdir -p obj/lst
-	@ echo "compiling lst..."
-
-math : $(addprefix $(OBJ), $(OBJ_MATH))
-	@ mkdir -p obj/math
-	@ echo "compiling math..."
-
-mem : $(addprefix $(OBJ), $(OBJ_MEM))
-	@ mkdir -p obj/mem
-	@ echo "compiling mem..."
-
-print : mem lst arr $(addprefix $(OBJ), $(OBJ_PRINT))
-	@ mkdir -p obj/print
-	@ echo "compiling print..."
-
-str : mem lst arr $(addprefix $(OBJ), $(OBJ_STR))
-	@ mkdir -p obj/str
-	@ echo "compiling str..."
-
-tstr : mem lst str $(addprefix $(OBJ), $(OBJ_TSTR))
-	@ mkdir -p obj/tstr
-	@ echo "compiling tstr..."
+$(DLST:/=) : $(DLST) mem $(addprefix $(OBJ), $(OBJ_DLST))
+	@ echo "compiling $@..."
+$(FILE:/=) : $(FILE) lst tstr $(addprefix $(OBJ), $(OBJ_FILE))
+	@ echo "compiling $@..."
+$(LST:/=) : $(LST) mem $(addprefix $(OBJ), $(OBJ_LST))
+	@ echo "compiling $@..."
+$(MATH:/=) : $(MATH) $(addprefix $(OBJ), $(OBJ_MATH))
+	@ echo "compiling $@..."
+$(MEM:/=) : $(MEM) $(addprefix $(OBJ), $(OBJ_MEM))
+	@ echo "compiling $@..."
+$(PRINT:/=) : $(PRINT) mem lst arr $(addprefix $(OBJ), $(OBJ_PRINT))
+	@ echo "compiling $@..."
+$(STR:/=) : $(STR) mem lst arr $(addprefix $(OBJ), $(OBJ_STR))
+	@ echo "compiling $@..."
+$(TSTR:/=) : $(TSTR) mem lst str $(addprefix $(OBJ), $(OBJ_TSTR))
+	@ echo "compiling $@..."
 
 #cleaning
 clean : 
@@ -196,6 +175,6 @@ re : fclean all
 
 #chokbar
 chokbar :
-	@echo "                      ⢀⣤⠴⠶⠶⢤⣀⡀\n                    ⣀⠞⠁      ⠻⣄⡀         ⢀⠤⢄⣄⡀  ⣀⣴\n              ⣠⣾⠿⠴⠚⠋⠡⠈      ⡐⢑⠂⠙⠛⠲⣄⡀      ⣧⢵⠁   ⠷⠛\n     ⣾⣿      ⢈⠛⠁   ⢐⡊  ⢀⡐⠂         ⠙⠦⣀⡀   ⠈⠋\n    ⣸⡿⡾     ⡾    ⠨⡀⡜⣣⣜⡣⢔⡑⠠⢀⡀    ⠠⠊    ⢻⡀\n   ⢀⣿⣿⣟⡀⡀⡀⣀⠼⠨⢄⢀⡀⢀⡄⣁⢽⣿⣿⡿⠻⠙⠣⠪⢜⡌⡀⡀⢂⢤⢆⡀⡀⠠⡄⡑⠳⣀⡀⡀\n   ⠈⣿⣿⣿⡇⠛⠁    ⠑⠲⠕⠊⠉⠑⢿⡋      ⠘⢱⡣⠈⠉⠉⠑⠺⠇     ⠙⣄⡀\n    ⠋⠉⢠⠁      ⡨     ⡱⡀       ⢜⡃     ⢨⡀      ⣦⡀\n      ⣿⡌⠄⡀⡀⡀⡀⡜⢣⡀⡀⡀⡀⠨⢅⢱⠄⡀⡀⡀⡀⠠⠢⡆⡪⡀⢠⠳⢦⠤⣐⣒⣀⡀⡀⡀⡀⢌⢼⡀\n      ⣷⣮⡂⢠⠬⢡⡌⣿⣯⢜⡢⢢⢅⣨⣽⣷⣕⡲⢕⡡⢌⣑⣸⣿⣿⡦⣼⣒⠇⠨⡕⢢⣝⡁⢨⡅⢕⣺⣼⢉⣧\n      ⠸⣿⣿⣿⣯⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣯⣷⣿⣿⣿⣿⡇⢕⡑⡘⡕⢪⢿⣾⣾⣿⣾⣯⠇⠎⣻\n     ⣀⣤⠉⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢼⣿⡇⡸⢷⣗⣿⣿⣿⣿⣿⡟⡲⢼⣯⡄\n   ⠈⣿⢿⣑⡄  ⠙⠿⣿⣿⣿⣿⣿⣿⠿⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡾⣽⣯⣽⣿⣼⣿⡿⠋⣠⣟⣿⣿⣯⡏\n    ⠘⣧⡵⡾     ⠉⡍⡉⣿⣿⡀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣽⠋⠉⢉⣤⣴⣿⣿⣿⣿⣿⡟\n     ⠹⡎⣁⣤⣄    ⠙⠛⠉⠈⢠⢟⡏⡟⡟⡯⢜⠉⢟⢋⠛⡋⠋⠏⢻⢸⡀  ⠘⠛⠿⣿⣿⣿⠋\n      ⠿⠻⣿⣷⣷⡀      ⠈⠛⠛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠋\n        ⢻⣿⣿⠟     ⢠⣶⣠⣄⢼⠿⡿⢿⣿⣿⣿⣿⣿⣿⢂⣿⣧⣾⣧⢀⡀\n         ⠉   ⢀⣿⣿⣷⣿⣿⣿⣿⣿⣿⣾⣷⣩⢭⣧⣦⠧⢝⡢⡙⢿⠿⣿⣿⣿⣿⣀⣦⡀\n         ⣴⢿⣿⣿⣯⣿⣆⠐⣾⣿⣾⣾⣽⣧⣍⠛⡶⣮⣬⡴⡳⢯⣟⣯⣽⣿⢞⢩⡹⢦⣮⠏\n         ⠈⢧⠹⣽⣿⣿⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣵⡑⢳⡿⣟⣾⡿⡿⢿⢎⣼⣿⣿⣇⡿\n           ⠻⣷⣮⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣸⡧⡕⢳⡻⡇⡸⣿⢟⡽⢿⣿⠁\n            ⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⣿⣿⡣⡸⡕⡳⡗⢝⡣⣿⣽⡯⣺⢿\n           ⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣻⣻⣿⣿⣵⢞⡳⡎⢝⢣⡯⣫⣝⣿⣿\n          ⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣼⣿⣇⣄⡗⣿⣿⣿⡽⡳⡺⢳⣪⢃⣇⣈⢻⡏\n         ⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣿⣿⣟⣗⡧⢮⣳⡸⣿⣿⢨⣇\n        ⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠘⣿⣿⣿⣿⣿⣿⣿⣿⣷⡧⣺⢷⢧⣿⢟⢜⢿\n       ⣠⢿⣯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⢯⡮⢷⣿⢮⢮⣷\n       ⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢷⣕⡗⡮⣯⣳⣻⡻⡆\n       ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣾⣵⣿⣺⣗⣿\n       ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⡱⢮⢵⣜⢴⣙⣯⣾\n       ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣾⣿⣟⣿⣽⣽⣿⣿⢵⢿\n       ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿ ⣿⣿⣿⣿⣿⣿⣿⣯⣿⡿⣿⣿⣿⣽⣟⢾⣏⢻⣿ ⣸⡀  ⣴⡀\n       ⣿⣿⣿⣿⣿⣿⣿⠇⣿⣿⣿⣿⣿⢰ ⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣿⣿⣿⣿⣾⣿⣷⣿⡴⠋⡌ ⣼⢣\n        ⠛⣿⣿⣿⣿⡟⠂⢹⣿⣿⣿⣿⠹⡀⠈⠻⣿⣿⣿⣿⣻⣾⣿⣿⣿⣿⣿⣿⣯⢿⣿⣿⢸ ⢀⣤⡿⢇⠇\n         ⢹⣿⣿⣿⢸⡀ ⣿⣿⣿⣿⣷⣑⡀  ⢿⣿⣿⣕⢻⣿⣿⣕⡿⡿⡧⡧⠌⣿⠟⣾⡚⢽⡞⢸⡟\n         ⠈⣿⣿⣿⣇⣷⡀     ⢻⣿⣿⣿⣿⣿⣿⣿⣷⢦⡮⣽⣽⣺⣮⣮⣮⡮⣽⠇⢇⣸⡷⠋\n           ⠋⢻⣿⣎⠶⣀⡀  ⢀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣿⣷⣟⣿⣿⡿⠻⠛⠉\n             ⢿⣿⣿⣿⣿⡛⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣯⣿⣽⡿⣽\n              ⢿⣿⠿⢿⣿⣦⠙⣿⣿⣿⣿⣻⣿⣿⣿⣿⣿⡿⣾⣿⣟⡿⡾\n                  ⠙⣿⠿⣦⠛⣿⣿⠛⢿⣿⣿⣿⣟⣿⠟⣠⡿⡼\n                     ⠈⢿⣦⠻⣿⣷⣤⣉⣉⣉⣤⣾⡿⡞\n                       ⠈⢿⣦⡉⠿⡿⡿⡿⠟⣡⠟\n                         ⠉⠿⣿⣿⣷⣾⠟⠁"
+	@ echo "                      ⢀⣤⠴⠶⠶⢤⣀⡀\n                    ⣀⠞⠁      ⠻⣄⡀         ⢀⠤⢄⣄⡀  ⣀⣴\n              ⣠⣾⠿⠴⠚⠋⠡⠈      ⡐⢑⠂⠙⠛⠲⣄⡀      ⣧⢵⠁   ⠷⠛\n     ⣾⣿      ⢈⠛⠁   ⢐⡊  ⢀⡐⠂         ⠙⠦⣀⡀   ⠈⠋\n    ⣸⡿⡾     ⡾    ⠨⡀⡜⣣⣜⡣⢔⡑⠠⢀⡀    ⠠⠊    ⢻⡀\n   ⢀⣿⣿⣟⡀⡀⡀⣀⠼⠨⢄⢀⡀⢀⡄⣁⢽⣿⣿⡿⠻⠙⠣⠪⢜⡌⡀⡀⢂⢤⢆⡀⡀⠠⡄⡑⠳⣀⡀⡀\n   ⠈⣿⣿⣿⡇⠛⠁    ⠑⠲⠕⠊⠉⠑⢿⡋      ⠘⢱⡣⠈⠉⠉⠑⠺⠇     ⠙⣄⡀\n    ⠋⠉⢠⠁      ⡨     ⡱⡀       ⢜⡃     ⢨⡀      ⣦⡀\n      ⣿⡌⠄⡀⡀⡀⡀⡜⢣⡀⡀⡀⡀⠨⢅⢱⠄⡀⡀⡀⡀⠠⠢⡆⡪⡀⢠⠳⢦⠤⣐⣒⣀⡀⡀⡀⡀⢌⢼⡀\n      ⣷⣮⡂⢠⠬⢡⡌⣿⣯⢜⡢⢢⢅⣨⣽⣷⣕⡲⢕⡡⢌⣑⣸⣿⣿⡦⣼⣒⠇⠨⡕⢢⣝⡁⢨⡅⢕⣺⣼⢉⣧\n      ⠸⣿⣿⣿⣯⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣯⣷⣿⣿⣿⣿⡇⢕⡑⡘⡕⢪⢿⣾⣾⣿⣾⣯⠇⠎⣻\n     ⣀⣤⠉⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢼⣿⡇⡸⢷⣗⣿⣿⣿⣿⣿⡟⡲⢼⣯⡄\n   ⠈⣿⢿⣑⡄  ⠙⠿⣿⣿⣿⣿⣿⣿⠿⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡾⣽⣯⣽⣿⣼⣿⡿⠋⣠⣟⣿⣿⣯⡏\n    ⠘⣧⡵⡾     ⠉⡍⡉⣿⣿⡀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣽⠋⠉⢉⣤⣴⣿⣿⣿⣿⣿⡟\n     ⠹⡎⣁⣤⣄    ⠙⠛⠉⠈⢠⢟⡏⡟⡟⡯⢜⠉⢟⢋⠛⡋⠋⠏⢻⢸⡀  ⠘⠛⠿⣿⣿⣿⠋\n      ⠿⠻⣿⣷⣷⡀      ⠈⠛⠛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠋\n        ⢻⣿⣿⠟     ⢠⣶⣠⣄⢼⠿⡿⢿⣿⣿⣿⣿⣿⣿⢂⣿⣧⣾⣧⢀⡀\n         ⠉   ⢀⣿⣿⣷⣿⣿⣿⣿⣿⣿⣾⣷⣩⢭⣧⣦⠧⢝⡢⡙⢿⠿⣿⣿⣿⣿⣀⣦⡀\n         ⣴⢿⣿⣿⣯⣿⣆⠐⣾⣿⣾⣾⣽⣧⣍⠛⡶⣮⣬⡴⡳⢯⣟⣯⣽⣿⢞⢩⡹⢦⣮⠏\n         ⠈⢧⠹⣽⣿⣿⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣵⡑⢳⡿⣟⣾⡿⡿⢿⢎⣼⣿⣿⣇⡿\n           ⠻⣷⣮⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣸⡧⡕⢳⡻⡇⡸⣿⢟⡽⢿⣿⠁\n            ⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⣿⣿⡣⡸⡕⡳⡗⢝⡣⣿⣽⡯⣺⢿\n           ⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣻⣻⣿⣿⣵⢞⡳⡎⢝⢣⡯⣫⣝⣿⣿\n          ⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣼⣿⣇⣄⡗⣿⣿⣿⡽⡳⡺⢳⣪⢃⣇⣈⢻⡏\n         ⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣿⣿⣟⣗⡧⢮⣳⡸⣿⣿⢨⣇\n        ⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠘⣿⣿⣿⣿⣿⣿⣿⣿⣷⡧⣺⢷⢧⣿⢟⢜⢿\n       ⣠⢿⣯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⢯⡮⢷⣿⢮⢮⣷\n       ⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢷⣕⡗⡮⣯⣳⣻⡻⡆\n       ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣾⣵⣿⣺⣗⣿\n       ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⡱⢮⢵⣜⢴⣙⣯⣾\n       ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣾⣿⣟⣿⣽⣽⣿⣿⢵⢿\n       ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿ ⣿⣿⣿⣿⣿⣿⣿⣯⣿⡿⣿⣿⣿⣽⣟⢾⣏⢻⣿ ⣸⡀  ⣴⡀\n       ⣿⣿⣿⣿⣿⣿⣿⠇⣿⣿⣿⣿⣿⢰ ⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣿⣿⣿⣿⣾⣿⣷⣿⡴⠋⡌ ⣼⢣\n        ⠛⣿⣿⣿⣿⡟⠂⢹⣿⣿⣿⣿⠹⡀⠈⠻⣿⣿⣿⣿⣻⣾⣿⣿⣿⣿⣿⣿⣯⢿⣿⣿⢸ ⢀⣤⡿⢇⠇\n         ⢹⣿⣿⣿⢸⡀ ⣿⣿⣿⣿⣷⣑⡀  ⢿⣿⣿⣕⢻⣿⣿⣕⡿⡿⡧⡧⠌⣿⠟⣾⡚⢽⡞⢸⡟\n         ⠈⣿⣿⣿⣇⣷⡀     ⢻⣿⣿⣿⣿⣿⣿⣿⣷⢦⡮⣽⣽⣺⣮⣮⣮⡮⣽⠇⢇⣸⡷⠋\n           ⠋⢻⣿⣎⠶⣀⡀  ⢀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣿⣷⣟⣿⣿⡿⠻⠛⠉\n             ⢿⣿⣿⣿⣿⡛⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣯⣿⣽⡿⣽\n              ⢿⣿⠿⢿⣿⣦⠙⣿⣿⣿⣿⣻⣿⣿⣿⣿⣿⡿⣾⣿⣟⡿⡾\n                  ⠙⣿⠿⣦⠛⣿⣿⠛⢿⣿⣿⣿⣟⣿⠟⣠⡿⡼\n                     ⠈⢿⣦⠻⣿⣷⣤⣉⣉⣉⣤⣾⡿⡞\n                       ⠈⢿⣦⡉⠿⡿⡿⡿⠟⣡⠟\n                         ⠉⠿⣿⣿⣷⣾⠟⠁"
 
 .PHONY: all std fclean clean re chokbar $(ARR:/=) $(CHAR:/=) $(DLST:/=) $(FILE:/=) $(LST:/=) $(MATH:/=) $(MEM:/=) $(PRINT:/=) $(STR:/=) $(TSTR:/=)
