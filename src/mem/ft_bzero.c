@@ -6,33 +6,36 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 13:32:13 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/21 18:54:08 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/04/03 19:48:42 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_mem.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_bzero(void *restrict s, size_t n)
 {
-	char	*ptr;
-	size_t	*ptr_long;
-	size_t	i;
-	size_t	i_long;
+	size_t	ptr;
 
-	i = 0;
-	i_long = sizeof(size_t);
-	ptr = (char *) s;
-	ptr_long = (size_t *) s;
-	while (i_long < n)
+	ptr = (size_t) s;
+	if (n >= OPSIZE)
 	{
-		ptr_long[i] = 0;
-		i++;
-		i_long += sizeof(size_t);
+		while (ptr % OPSIZE)
+		{
+			*(uint8_t *)ptr = 0;
+			ptr += 1;
+			n -= 1;
+		}
 	}
-	i_long -= sizeof(size_t);
-	while (i_long < n)
+	while (n >= OPSIZE)
 	{
-		ptr[i_long] = 0;
-		i_long++;
+		*(uint64_t *)ptr = 0;
+		ptr += OPSIZE;
+		n -= OPSIZE;
+	}
+	while (n)
+	{
+		*(uint8_t *)ptr = 0;
+		ptr += 1;
+		n -= 1;
 	}
 }

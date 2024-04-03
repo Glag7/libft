@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_mem.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: glaguyon <glaguyon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 15:02:38 by glaguyon          #+#    #+#             */
-/*   Updated: 2024/04/03 20:22:28 by glaguyon         ###   ########.fr       */
+/*   Created: 2024/04/03 19:18:30 by glaguyon          #+#    #+#             */
+/*   Updated: 2024/04/03 20:22:12 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_mem.h"
+#ifndef FT_MEM_H
+# define FT_MEM_H
 
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	void	*ptr;
+# include <stdint.h>
+# include <stddef.h>
 
-	size *= nmemb;
-	ptr = malloc(size);
-	if (ptr == NULL)
-		return (NULL);
-	ft_bzero(ptr, size);
-	return (ptr);
-}
+# define OPSIZE 8
+
+void	ft_bzero(void *restrict s, size_t n);
+
+#endif
