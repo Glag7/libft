@@ -6,7 +6,7 @@
 /*   By: glag <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 20:23:38 by glag              #+#    #+#             */
-/*   Updated: 2024/04/03 16:34:27 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/04/03 19:25:26 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,5 @@ enum	e_chars
 };
 
 bool	ft_is(int bitmask, int c);
-int		ft_tolower(int c);
-int		ft_toupper(int c);
 
 #endif

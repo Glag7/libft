@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2024/04/03 16:47:10 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/04/03 20:25:18 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,10 +121,8 @@ ssize_t	ft_max(ssize_t a, ssize_t b);
 ssize_t	ft_min(ssize_t a, ssize_t b);
 ssize_t	ft_powi(ssize_t x, size_t n);
 size_t	ft_sqrti(size_t n);
-
+*/
 //mem
-void	ft_bspace(void *s, size_t n);
-void	ft_bzchar(void *s, size_t n);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	*ft_memchr(const void *s, int c, size_t n);
@@ -132,7 +130,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 void	*ft_memset(void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
-
+/*
 //print
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
