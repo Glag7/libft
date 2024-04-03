@@ -6,7 +6,7 @@
 /*   By: glag <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 20:23:38 by glag              #+#    #+#             */
-/*   Updated: 2024/04/01 00:33:56 by glag             ###   ########.fr       */
+/*   Updated: 2024/04/03 14:00:25 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,136 +32,137 @@
 # define ALPHA 12
 # define ALNUM 44
 
-//norme doesn't allow for macros inside macros.
-//as always, the code is much messier.
-# define C000 1
-# define C001 1
-# define C002 1
-# define C003 1
-# define C004 1
-# define C005 1
-# define C006 1
-# define C007 1
-# define C008 1
-# define C009 17
-# define C010 17
-# define C011 17
-# define C012 17
-# define C013 17
-# define C014 1
-# define C015 1
-# define C016 1
-# define C017 1
-# define C018 1
-# define C019 1
-# define C020 1
-# define C021 1
-# define C022 1
-# define C023 1
-# define C024 1
-# define C025 1
-# define C026 1
-# define C027 1
-# define C028 1
-# define C029 1
-# define C030 1
-# define C031 1
-# define C032 19
-# define C033 131
-# define C034 131
-# define C035 131
-# define C036 131
-# define C037 131
-# define C038 131
-# define C039 131
-# define C040 131
-# define C041 131
-# define C042 131
-# define C043 131
-# define C044 131
-# define C045 131
-# define C046 131
-# define C047 131
-# define C048 99
-# define C049 99
-# define C050 99
-# define C051 99
-# define C052 99
-# define C053 99
-# define C054 99
-# define C055 99
-# define C056 99
-# define C057 99
-# define C058 131
-# define C059 131
-# define C060 131
-# define C061 131
-# define C062 131
-# define C063 131
-# define C064 131
-# define C065 75
-# define C066 75
-# define C067 75
-# define C068 75
-# define C069 75
-# define C070 75
-# define C071 11
-# define C072 11
-# define C073 11
-# define C074 11
-# define C075 11
-# define C076 11
-# define C077 11
-# define C078 11
-# define C079 11
-# define C080 11
-# define C081 11
-# define C082 11
-# define C083 11
-# define C084 11
-# define C085 11
-# define C086 11
-# define C087 11
-# define C088 11
-# define C089 11
-# define C090 11
-# define C091 131
-# define C092 131
-# define C093 131
-# define C094 131
-# define C095 131
-# define C096 131
-# define C097 71
-# define C098 71
-# define C099 71
-# define C100 71
-# define C101 71
-# define C102 71
-# define C103 7
-# define C104 7
-# define C105 7
-# define C106 7
-# define C107 7
-# define C108 7
-# define C109 7
-# define C110 7
-# define C111 7
-# define C112 7
-# define C113 7
-# define C114 7
-# define C115 7
-# define C116 7
-# define C117 7
-# define C118 7
-# define C119 7
-# define C120 7
-# define C121 7
-# define C122 7
-# define C123 131
-# define C124 131
-# define C125 131
-# define C126 131
-# define C127 1
+enum	e_chars
+{
+	C000 = ASCII,
+	C001 = ASCII,
+	C002 = ASCII,
+	C003 = ASCII,
+	C004 = ASCII,
+	C005 = ASCII,
+	C006 = ASCII,
+	C007 = ASCII,
+	C008 = ASCII,
+	C009 = ASCII | SPACE,
+	C010 = ASCII | SPACE,
+	C011 = ASCII | SPACE,
+	C012 = ASCII | SPACE,
+	C013 = ASCII | SPACE,
+	C014 = ASCII,
+	C015 = ASCII,
+	C016 = ASCII,
+	C017 = ASCII,
+	C018 = ASCII,
+	C019 = ASCII,
+	C020 = ASCII,
+	C021 = ASCII,
+	C022 = ASCII,
+	C023 = ASCII,
+	C024 = ASCII,
+	C025 = ASCII,
+	C026 = ASCII,
+	C027 = ASCII,
+	C028 = ASCII,
+	C029 = ASCII,
+	C030 = ASCII,
+	C031 = ASCII,
+	C032 = ASCII | PRINT | SPACE,
+	C033 = ASCII | PRINT | PUNCT,
+	C034 = ASCII | PRINT | PUNCT,
+	C035 = ASCII | PRINT | PUNCT,
+	C036 = ASCII | PRINT | PUNCT,
+	C037 = ASCII | PRINT | PUNCT,
+	C038 = ASCII | PRINT | PUNCT,
+	C039 = ASCII | PRINT | PUNCT,
+	C040 = ASCII | PRINT | PUNCT,
+	C041 = ASCII | PRINT | PUNCT,
+	C042 = ASCII | PRINT | PUNCT,
+	C043 = ASCII | PRINT | PUNCT,
+	C044 = ASCII | PRINT | PUNCT,
+	C045 = ASCII | PRINT | PUNCT,
+	C046 = ASCII | PRINT | PUNCT,
+	C047 = ASCII | PRINT | PUNCT,
+	C048 = ASCII | PRINT | DIGIT | XDIGIT,
+	C049 = ASCII | PRINT | DIGIT | XDIGIT,
+	C050 = ASCII | PRINT | DIGIT | XDIGIT,
+	C051 = ASCII | PRINT | DIGIT | XDIGIT,
+	C052 = ASCII | PRINT | DIGIT | XDIGIT,
+	C053 = ASCII | PRINT | DIGIT | XDIGIT,
+	C054 = ASCII | PRINT | DIGIT | XDIGIT,
+	C055 = ASCII | PRINT | DIGIT | XDIGIT,
+	C056 = ASCII | PRINT | DIGIT | XDIGIT,
+	C057 = ASCII | PRINT | DIGIT | XDIGIT,
+	C058 = ASCII | PRINT | PUNCT,
+	C059 = ASCII | PRINT | PUNCT,
+	C060 = ASCII | PRINT | PUNCT,
+	C061 = ASCII | PRINT | PUNCT,
+	C062 = ASCII | PRINT | PUNCT,
+	C063 = ASCII | PRINT | PUNCT,
+	C064 = ASCII | PRINT | PUNCT,
+	C065 = ASCII | PRINT | UPPER | XDIGIT,
+	C066 = ASCII | PRINT | UPPER | XDIGIT,
+	C067 = ASCII | PRINT | UPPER | XDIGIT,
+	C068 = ASCII | PRINT | UPPER | XDIGIT,
+	C069 = ASCII | PRINT | UPPER | XDIGIT,
+	C070 = ASCII | PRINT | UPPER | XDIGIT,
+	C071 = ASCII | PRINT | UPPER,
+	C072 = ASCII | PRINT | UPPER,
+	C073 = ASCII | PRINT | UPPER,
+	C074 = ASCII | PRINT | UPPER,
+	C075 = ASCII | PRINT | UPPER,
+	C076 = ASCII | PRINT | UPPER,
+	C077 = ASCII | PRINT | UPPER,
+	C078 = ASCII | PRINT | UPPER,
+	C079 = ASCII | PRINT | UPPER,
+	C080 = ASCII | PRINT | UPPER,
+	C081 = ASCII | PRINT | UPPER,
+	C082 = ASCII | PRINT | UPPER,
+	C083 = ASCII | PRINT | UPPER,
+	C084 = ASCII | PRINT | UPPER,
+	C085 = ASCII | PRINT | UPPER,
+	C086 = ASCII | PRINT | UPPER,
+	C087 = ASCII | PRINT | UPPER,
+	C088 = ASCII | PRINT | UPPER,
+	C089 = ASCII | PRINT | UPPER,
+	C090 = ASCII | PRINT | UPPER,
+	C091 = ASCII | PRINT | PUNCT,
+	C092 = ASCII | PRINT | PUNCT,
+	C093 = ASCII | PRINT | PUNCT,
+	C094 = ASCII | PRINT | PUNCT,
+	C095 = ASCII | PRINT | PUNCT,
+	C096 = ASCII | PRINT | PUNCT,
+	C097 = ASCII | PRINT | LOWER | XDIGIT,
+	C098 = ASCII | PRINT | LOWER | XDIGIT,
+	C099 = ASCII | PRINT | LOWER | XDIGIT,
+	C100 = ASCII | PRINT | LOWER | XDIGIT,
+	C101 = ASCII | PRINT | LOWER | XDIGIT,
+	C102 = ASCII | PRINT | LOWER | XDIGIT,
+	C103 = ASCII | PRINT | LOWER,
+	C104 = ASCII | PRINT | LOWER,
+	C105 = ASCII | PRINT | LOWER,
+	C106 = ASCII | PRINT | LOWER,
+	C107 = ASCII | PRINT | LOWER,
+	C108 = ASCII | PRINT | LOWER,
+	C109 = ASCII | PRINT | LOWER,
+	C110 = ASCII | PRINT | LOWER,
+	C111 = ASCII | PRINT | LOWER,
+	C112 = ASCII | PRINT | LOWER,
+	C113 = ASCII | PRINT | LOWER,
+	C114 = ASCII | PRINT | LOWER,
+	C115 = ASCII | PRINT | LOWER,
+	C116 = ASCII | PRINT | LOWER,
+	C117 = ASCII | PRINT | LOWER,
+	C118 = ASCII | PRINT | LOWER,
+	C119 = ASCII | PRINT | LOWER,
+	C120 = ASCII | PRINT | LOWER,
+	C121 = ASCII | PRINT | LOWER,
+	C122 = ASCII | PRINT | LOWER,
+	C123 = ASCII | PRINT | PUNCT,
+	C124 = ASCII | PRINT | PUNCT,
+	C125 = ASCII | PRINT | PUNCT,
+	C126 = ASCII | PRINT | PUNCT,
+	C127 = ASCII
+};
 
 bool	ft_is(int bitmask, int c);
 int		ft_tolower(int c);
