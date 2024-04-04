@@ -140,8 +140,7 @@ $(ARR) $(CHAR) $(DLST) $(FILE) $(LST) $(MATH) $(MEM) $(PRINT) $(STR) $(TSTR): $(
 $(NAME) : arr char dlst file lst math mem print str tstr
 
 $(OBJ)%.o: $(SRC)%.c
-	@echo $(dir $@)
-	$(COMP) $(CFLAGS) -c $^ -o $@ -I $(HDR) -D __FT_$(shell echo $(notdir $(patsubst %/, %, $(dir $@))) | tr '[:lower:]' '[:upper:]')__
+	@ $(COMP) $(CFLAGS) -c $^ -o $@ -I $(HDR) -D __FT_$(shell echo $(notdir $(patsubst %/, %, $(dir $@))) | tr '[:lower:]' '[:upper:]')__
 	@ ar rcs $(NAME) $@
 
 #folders

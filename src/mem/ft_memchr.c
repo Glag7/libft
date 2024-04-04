@@ -6,11 +6,11 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 16:34:05 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/02 16:02:52 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:41:33 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_mem.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {

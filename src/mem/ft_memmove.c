@@ -6,11 +6,11 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 14:24:57 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/21 18:18:36 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:46:54 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_mem.h"
 
 static void	*ft_rmemcpy(void *dest, const void *src, size_t n)
 {

@@ -6,13 +6,13 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 14:07:19 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/21 18:18:52 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:40:37 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_mem.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *restrict dest, const void *restrict src, size_t n)
 {
 	char	*src_c;
 	char	*dest_c;

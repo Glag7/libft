@@ -6,17 +6,19 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2024/04/03 20:25:18 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:51:54 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-//# include <stdint.h>
-//# include <stdlib.h>
-//# include <unistd.h>
-/*
+# include <stdint.h>
+# include <stddef.h>
+# include <stdbool.h>
+# include <stdlib.h>//rm in the future
+# include <unistd.h>
+
 //structs
 typedef struct s_list
 {
@@ -68,24 +70,23 @@ void	ft_swapint(int *a, int *b);
 void	ft_swaplen(void *a, void *b, size_t len);
 void	ft_swaplong(ssize_t *a, ssize_t *b);
 void	ft_swapptr(void *a, void *b);
-*/
+
 //char
-#  define ASCII 1
-#  define PRINT 2
-#  define LOWER 4
-#  define UPPER 8
-#  define SPACE 16
-#  define DIGIT 32
-#  define XDIGIT 64
-#  define PUNCT 128
-#  define ALPHA 12
-#  define ALNUM 44
+# define ASCII 1
+# define PRINT 2
+# define LOWER 4
+# define UPPER 8
+# define SPACE 16
+# define DIGIT 32
+# define XDIGIT 64
+# define PUNCT 128
+# define ALPHA 12
+# define ALNUM 44
 
 bool	ft_is(int bitmask, int c);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 
-/*
 //dlst
 t_dlst	*ft_dlstnew(void *content);
 t_dlst	*ft_dlstremove(t_dlst **lst, ssize_t n);
@@ -121,7 +122,7 @@ ssize_t	ft_max(ssize_t a, ssize_t b);
 ssize_t	ft_min(ssize_t a, ssize_t b);
 ssize_t	ft_powi(ssize_t x, size_t n);
 size_t	ft_sqrti(size_t n);
-*/
+
 //mem
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
@@ -130,7 +131,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 void	*ft_memset(void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
-/*
+
 //print
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
@@ -167,5 +168,5 @@ t_str	ft_tstr_dupstr(char *s, size_t len);
 t_str	ft_tstrnew(char *str, size_t len);
 void	ft_tstrdel(void *tstr);
 void	ft_tstrfree(void *tstr);
-*/
+
 #endif

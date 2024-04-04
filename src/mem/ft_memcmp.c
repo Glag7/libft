@@ -6,11 +6,11 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:05:03 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/16 16:57:36 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:43:01 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_mem.h"
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
