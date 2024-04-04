@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:46 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/20 01:26:14 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:36:37 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 t_str	ft_lsttstr_to_tstr(t_list **lst, size_t len, void (del)(void *),
 	short (end)(t_str *))
 {
-	t_list	*ob;
-	t_str	s;
+	t_list		*ob;
+	t_str		s;
 	size_t		i;
 
 	ob = *lst;

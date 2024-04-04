@@ -6,11 +6,11 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:57:23 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/16 17:30:50 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:47:04 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_mem.h"
 
 void	*ft_memset(void *s, int c, size_t n)
 {

@@ -6,14 +6,17 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2024/01/28 15:39:24 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:51:54 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stdlib.h>
+# include <stdint.h>
+# include <stddef.h>
+# include <stdbool.h>
+# include <stdlib.h>//rm in the future
 # include <unistd.h>
 
 //structs
@@ -69,11 +72,18 @@ void	ft_swaplong(ssize_t *a, ssize_t *b);
 void	ft_swapptr(void *a, void *b);
 
 //char
-char	ft_isalnum(int c);
-char	ft_isalpha(int c);
-char	ft_isascii(int c);
-char	ft_isdigit(int c);
-char	ft_isprint(int c);
+# define ASCII 1
+# define PRINT 2
+# define LOWER 4
+# define UPPER 8
+# define SPACE 16
+# define DIGIT 32
+# define XDIGIT 64
+# define PUNCT 128
+# define ALPHA 12
+# define ALNUM 44
+
+bool	ft_is(int bitmask, int c);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 
@@ -114,8 +124,6 @@ ssize_t	ft_powi(ssize_t x, size_t n);
 size_t	ft_sqrti(size_t n);
 
 //mem
-void	ft_bspace(void *s, size_t n);
-void	ft_bzchar(void *s, size_t n);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	*ft_memchr(const void *s, int c, size_t n);

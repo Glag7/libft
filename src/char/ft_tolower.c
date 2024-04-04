@@ -6,13 +6,15 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 15:15:21 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/10/30 15:34:29 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/04/01 00:14:53 by glag             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_tolower(int c)
+#include "ft_char.h"
+
+inline int	ft_tolower(int c)
 {
-	if (c >= 'A' && c <= 'Z')
-		return (c + 32);
+	if (ft_is(UPPER, c))
+		return (c | TOUPPER);
 	return (c);
 }

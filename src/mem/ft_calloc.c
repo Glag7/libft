@@ -6,35 +6,20 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:02:38 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/21 19:19:54 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/04/03 20:22:28 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_mem.h"
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	size_t	memsize;
-	size_t	i;
-	size_t	*memlong;
-	char	*mem;
+	void	*ptr;
 
-	memsize = nmemb * size;
-	memlong = malloc(memsize);
-	mem = (char *) memlong;
-	if (mem == NULL)
-		return (mem);
-	i = 0;
-	while (i < memsize / sizeof(size_t))
-	{
-		memlong[i] = 0;
-		i++;
-	}
-	i *= sizeof(size_t);
-	while (i < memsize)
-	{
-		mem[i] = 0;
-		i++;
-	}
-	return ((void *) mem);
+	size *= nmemb;
+	ptr = malloc(size);
+	if (ptr == NULL)
+		return (NULL);
+	ft_bzero(ptr, size);
+	return (ptr);
 }
