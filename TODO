@@ -1,8 +1,7 @@
 TODO
-better makefile, better messages (babonnet)
 compilation taille size_t
 
-libft : ifdef heqders, prototype
+move header
 
 arr :
 chrarr_int : 2* faster
@@ -24,16 +23,12 @@ mem :
 align + restrict
 memchr : use longptr
 
-print :
-(ft_printf)
-
 str :
 strlen : use longptr
 rework
 
 tstr :
 add str funcs
-use ptr instead of struct ? (union ?)
 
 (trees)
 (bigint)

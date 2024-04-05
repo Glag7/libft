@@ -6,16 +6,16 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 17:30:27 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/12/29 16:56:02 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/04/05 15:41:32 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_math.h"
 
-ssize_t	ft_powi(ssize_t x, size_t n)
+int64_t	ft_powi(int64_t x, unsigned int n)
 {
-	size_t	i;
-	ssize_t	x_og;
+	unsigned int	i;
+	int64_t			x_og;
 
 	if (n == 0)
 		return (1);
