@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_max.c                                           :+:      :+:    :+:   */
+/*   ft_math.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 17:28:28 by glaguyon          #+#    #+#             */
-/*   Updated: 2024/04/05 15:49:19 by glaguyon         ###   ########.fr       */
+/*   Created: 2024/04/05 15:41:59 by glaguyon          #+#    #+#             */
+/*   Updated: 2024/04/05 15:42:27 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_math.h"
+#ifndef FT_MATH_H
+# define FT_MATH_H
 
-inline int64_t	ft_max(int64_t a, int64_t b)
-{
-	if (a > b)
-		return (a);
-	return (b);
-}
+# include <stdint.h>
+
+#endif
