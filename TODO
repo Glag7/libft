@@ -16,9 +16,6 @@ lst :
 (lst_insert)
 (dlst)
 
-math :
-sqrt : use * instead of /
-
 mem :
 align + restrict
 memchr : use longptr

@@ -79,10 +79,11 @@ SRC_MEM = $(addprefix $(MEM), \
 	  ft_memset.c \
 	  ft_memcmp.c )
 SRC_PRINT = $(addprefix $(PRINT), \
+	    ft_printmem_fd.c \
 	    ft_putendl_fd.c \
 	    ft_putnbr_fd.c \
 	    ft_putnbrbase_fd.c \
-	    ft_putstr_fd.c )
+	    ft_putstr_fd.c)
 SRC_STR = $(addprefix $(STR), \
 	  ft_atoi.c \
 	  ft_atoibase.c \
@@ -157,7 +158,7 @@ $(MATH:/=) : $(MATH) $(addprefix $(OBJ), $(OBJ_MATH))
 	@ echo "compiling $@..."
 $(MEM:/=) : $(MEM) $(addprefix $(OBJ), $(OBJ_MEM))
 	@ echo "compiling $@..."
-$(PRINT:/=) : $(PRINT) mem lst arr $(addprefix $(OBJ), $(OBJ_PRINT))
+$(PRINT:/=) : $(PRINT) mem lst arr char $(addprefix $(OBJ), $(OBJ_PRINT))
 	@ echo "compiling $@..."
 $(STR:/=) : $(STR) mem lst arr $(addprefix $(OBJ), $(OBJ_STR))
 	@ echo "compiling $@..."

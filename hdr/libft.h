@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2024/04/05 15:49:07 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/04/05 17:56:05 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 # define NOLEN 0xFFFFFFFFFFFFFFFFULL
 # define IDK 0xFFFFFFFFFFFFFFFFULL
 
+void	ft_printmem_fd(void *addr, int fd, size_t size);
 void	ft_putendl_fd(char *s, int fd, size_t len);
 void	ft_putnbr_fd(int64_t n, int fd);
 void	ft_putnbrbase_fd(int64_t n, int fd, char *base);
