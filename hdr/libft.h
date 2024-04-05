@@ -6,7 +6,7 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:14:44 by glaguyon          #+#    #+#             */
-/*   Updated: 2024/04/04 16:51:54 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/04/05 15:07:30 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	ft_swapptr(void *a, void *b);
 bool	ft_is(int bitmask, int c);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+//
 
 //dlst
 t_dlst	*ft_dlstnew(void *content);
@@ -133,11 +134,14 @@ void	*ft_memset(void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 
 //print
-void	ft_putchar_fd(char c, int fd);
-void	ft_putendl_fd(char *s, int fd);
-void	ft_putnbr_fd(ssize_t n, int fd);
-void	ft_putnbrbase_fd(ssize_t n, int fd, char *base);
-void	ft_putstr_fd(char *s, int fd);
+# define NOLEN 0xFFFFFFFFFFFFFFFFULL
+# define IDK 0xFFFFFFFFFFFFFFFFULL
+
+void	ft_putendl_fd(char *s, int fd, size_t len);
+void	ft_putnbr_fd(int64_t n, int fd);
+void	ft_putnbrbase_fd(int64_t n, int fd, char *base);
+void	ft_putstr_fd(char *s, int fd, size_t len);
+//
 
 //str
 ssize_t	ft_atoi(const char *nptr);

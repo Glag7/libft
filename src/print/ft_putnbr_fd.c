@@ -6,15 +6,15 @@
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:10:47 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/23 17:17:00 by glaguyon         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:52:41 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_print.h"
 
-static void	ft_print_nbr(char *tmp, short neg, int fd)
+static inline void	ft_print_nbr(char *tmp, bool neg, int fd)
 {
-	size_t	i;
+	int		i;
 	char	c;
 	char	toprint[21];
 
@@ -34,12 +34,12 @@ static void	ft_print_nbr(char *tmp, short neg, int fd)
 	write(fd, toprint, i);
 }
 
-void	ft_putnbr_fd(ssize_t n, int fd)
+void	ft_putnbr_fd(int64_t n, int fd)
 {
-	size_t	numlen;
-	size_t	num;
-	char	tmp[21];
-	short	neg;
+	uint64_t	num;
+	char		tmp[21];
+	int			numlen;
+	bool		neg;
 
 	neg = 0;
 	num = n;

@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_print.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glaguyon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 15:04:30 by glaguyon          #+#    #+#             */
-/*   Updated: 2023/11/04 15:05:22 by glaguyon         ###   ########.fr       */
+/*   Created: 2024/04/05 14:45:13 by glaguyon          #+#    #+#             */
+/*   Updated: 2024/04/05 15:05:12 by glaguyon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_PRINT_H
+# define FT_PRINT_H
 
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-}
+# include <unistd.h>
+# include <stdint.h>
+# include <stddef.h>
+# include <stdbool.h>
+
+# define NOLEN 0xFFFFFFFFFFFFFFFFULL
+
+size_t	ft_strlen(const char *s);
+
+#endif

@@ -79,7 +79,6 @@ SRC_MEM = $(addprefix $(MEM), \
 	  ft_memset.c \
 	  ft_memcmp.c )
 SRC_PRINT = $(addprefix $(PRINT), \
-	    ft_putchar_fd.c \
 	    ft_putendl_fd.c \
 	    ft_putnbr_fd.c \
 	    ft_putnbrbase_fd.c \
